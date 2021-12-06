@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase';
 import firebaseConfig from '../api/apiKeys';
+import SideNav from '../components/SideNav';
 
 function Initialize() {
   const [user, setUser] = useState(null);
@@ -16,6 +17,9 @@ function Initialize() {
         setUser(userInfo);
         if (userInfo.uid === firebaseConfig.adminUid) {
           setAdmin(userInfo);
+        } else if (userInfo !== firebaseConfig.adminUid) {
+          setAdmin(null);
+          setUser(userInfo);
         }
       } else if (user || user === null) {
         setUser(null);
@@ -24,11 +28,10 @@ function Initialize() {
     });
   }, []);
 
-  console.warn(admin);
-
   return (
     <div className="App">
       <h2>INSIDE APP COMPONENT</h2>
+      <SideNav admin={admin} />
     </div>
   );
 }
