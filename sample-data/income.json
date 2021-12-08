@@ -1,0 +1,18 @@
+{
+    "-Mj263szdsLYA9VNZ6NO": {
+        "firebaseKey": "-Mj263szdsLYA9VNZ6NO",
+        "name": "income1",
+        "category": "Full-Time",
+        "income": 2500,
+        "freq": 2,
+        "recurring": true
+    },
+    "-Mj263szdsLYA9VNZ6N1": {
+        "firebaseKey": "-Mj263szdsLYA9VNZ6N1",
+        "name": "income1",
+        "category": "Part-Time",
+        "income": 1000,
+        "freq": 2,
+        "recurring": true
+    }
+}

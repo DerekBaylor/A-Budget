@@ -24,7 +24,7 @@ export const SideNavData = [
   {
     title: 'Liabilities',
     path: '/liabilities',
-    icon: <RiIcons.RiBriefcaseLine />,
+    icon: <RiIcons.RiBriefcase2Line />,
     cName: 'nav-text',
   },
   {
