@@ -1,5 +1,6 @@
 {
-  "name": "react-template-2021",
+  "name": "a-budget",
+  "author": "derek-baylor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
