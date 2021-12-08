@@ -4,3 +4,64 @@
 body {
   background-color: $favColor !important;
 }
+
+// .navBar {
+//   background-color:  #060b26;
+//   height: 5rem;
+//   display: flex;
+//   justify-content: start;
+//   align-items: center;
+// }
+// .menu-bars {
+//   margin-left: 2rem;
+//   font-size: 2rem;
+//   background: none;
+// }
+// .nav-menu {
+//   background-color: #060b26;
+//   width: 15.625rem;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   position: fixed;
+//   top: 0;
+//   left: -100%;
+//   transition: 850ms;
+// }
+// .nav-menu.active {
+//   left: 0;
+//   transition: 350ms
+// }
+// .nav-text {
+//   display: flex;
+//   justify-content: start;
+//   align-items: center;
+//   padding: .5rem, 0rem, .5rem, 1rem;
+//   list-style: none;
+//   height: 3.75rem;
+// }
+// .nav-text a {
+//   text-decoration: none;
+//   color: #f5f5f5;
+//   font-size: 1.1rem;
+//   width: 95%;
+//   height: 100%;
+//   display: flex;
+//   align-items: center;
+//   padding: 0 1rem;
+//   border-radius: .25rem;
+// }
+// .nav-menu-item {
+//   width: 100%;
+// }
+// .nav-toggle {
+//   background-color: #060b26;
+//   width: 100%;
+//   height: 5rem;
+//   display: flex;
+//   justify-content: start;
+//   align-items: center;
+// }
+// span{
+//   margin-left: 1rem;
+// }

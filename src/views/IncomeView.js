@@ -1,9 +1,10 @@
 import React from 'react';
 
 export default function IncomeView() {
+  console.warn('Income View');
   return (
     <div>
-      <h1>Income</h1>
+      <h2>Income</h2>
     </div>
   );
 }

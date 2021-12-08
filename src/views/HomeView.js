@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function UserRoutes() {
+export default function HomeView() {
   return (
     <div>
-      <h1>routes</h1>
+      <h1>Home View</h1>
     </div>
   );
 }
