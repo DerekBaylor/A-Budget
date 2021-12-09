@@ -1,18 +1,20 @@
 {
-    "-Mj263szdsLYA9VNZ6NO": {
-        "firebaseKey": "-Mj263szdsLYA9VNZ6NO",
+    "-MqS1RC7F_5Jdj5z0sGU": {
+        "firebaseKey": "-MqS1RC7F_5Jdj5z0sGU",
         "name": "income1",
         "category": "Full-Time",
         "income": 2500,
         "freq": 2,
-        "recurring": true
+        "recurring": true,
+        "uid": "8OuZfF07l2UsQ9lYb86xEIHJLyU2"
     },
-    "-Mj263szdsLYA9VNZ6N1": {
-        "firebaseKey": "-Mj263szdsLYA9VNZ6N1",
+    "-MqS1WDqhiafQup0w8Qh": {
+        "firebaseKey": "-MqS1WDqhiafQup0w8Qh",
         "name": "income1",
         "category": "Part-Time",
         "income": 1000,
         "freq": 2,
-        "recurring": true
+        "recurring": true,
+        "uid": "8OuZfF07l2UsQ9lYb86xEIHJLyU2"
     }
 }

@@ -1,15 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { createIncome, updateIncome } from '../../api/data/incomeData';
 
-export default function IncomeForm() {
-  const initialState = {
-    name: '',
-    Category: '', // menu choice Full-Time, Part-Time, One-Time
-    Income: '', // numeric
-    PaymentFreq: '', // menu choice Once, Weekly, Bi-Weekly, Monthly
-    Recurring: false, // bool Checkbox
+const initialState = {
+  name: '',
+  Category: '', // menu choice Full-Time, Part-Time, One-Time
+  Income: '',
+  PaymentFreq: '', // menu choice Once, Weekly, Bi-Weekly, Monthly
+  Recurring: false, // bool Checkbox
+};
+export default function IncomeForm({ obj }) {
+  const [formInput, setFormInput] = useState(initialState);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (obj.firebaseKey) {
+      setFormInput(obj);
+    } else {
+      setFormInput(initialState);
+    }
+  }, [obj]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  console.warn(initialState);
+  const resetForm = () => {
+    setFormInput(initialState);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (obj.firebaseKey) {
+      updateIncome(obj.firebaseKey, formInput).then(() => {
+        resetForm();
+        history.push('/');
+      });
+    } else {
+      createIncome({ ...formInput }).then(() => {
+        resetForm();
+        history.push('/');
+      });
+    }
+  };
 
   return (
     <div className="income-form-container">
@@ -21,8 +61,9 @@ export default function IncomeForm() {
               className="form-input"
               id="name"
               name="name"
-              //   value={formInput.name}
-              //   onChange={handleChange}
+              type="string"
+              value={formInput.name}
+              onChange={handleChange}
               required
               placeholder="Enter Income Name"
             />
@@ -35,8 +76,8 @@ export default function IncomeForm() {
               className="form-input"
               id="name"
               name="name"
-              //   value={formInput.name}
-              //   onChange={handleChange}
+              value={formInput.category}
+              onChange={handleChange}
               required
               placeholder="Choose Income Category"
             />
@@ -47,10 +88,11 @@ export default function IncomeForm() {
             <span className="form-text">Income Amount:</span>
             <input
               className="form-input"
-              id="name"
-              name="name"
-              //   value={formInput.name}
-              //   onChange={handleChange}
+              id="income"
+              name="income"
+              type="number"
+              value={formInput.income}
+              onChange={handleChange}
               required
               placeholder="Enter Income Amount"
             />
@@ -59,15 +101,19 @@ export default function IncomeForm() {
         <div>
           <label className="form-label">
             <span className="form-text">Payment Frequency:</span>
-            <input
+            <select
               className="form-input"
-              id="name"
-              name="name"
-              //   value={formInput.name}
-              //   onChange={handleChange}
+              id="freq"
+              name="freq"
+              onChange={handleChange}
               required
-              placeholder="Choose Income Freqency"
-            />
+              value={formInput.freq}
+            >
+              <option value="1">Once Per Month</option>
+              <option value="2">Twice Per Month</option>
+              <option value="3">Three Times Per Month</option>
+              <option value="4">Four Times Per Month</option>
+            </select>
           </label>
           <div>
             <div>
@@ -80,7 +126,11 @@ export default function IncomeForm() {
             </div>
           </div>
           <div className="form-btn-group">
-            <button type="submit" className="btn btn-primary form-btn">
+            <button
+              className="btn btn-primary form-btn btn-success"
+              type="submit"
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </div>
@@ -89,3 +139,11 @@ export default function IncomeForm() {
     </div>
   );
 }
+
+IncomeForm.propTypes = {
+  obj: PropTypes.shape(PropTypes.obj),
+};
+
+IncomeForm.defaultProps = {
+  obj: {},
+};
