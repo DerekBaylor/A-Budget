@@ -29,6 +29,26 @@ body {
       margin-top: 1rem;
     }
   }
+  .income-card-container{
+    .income-cards{
+      // max-width: 30rem;
+      margin: .5rem;
+      .card-body{
+        .card-data {
+          display: flex;
+          flex-direction: row;
+        }
+        .card-btn{
+          display: flex;
+          justify-content: center ;
+          background: none;
+          text-decoration: underline;
+          color: red;
+          font-weight: 700;
+        }
+      }
+    }
+  }
 }
 
 .navBar {

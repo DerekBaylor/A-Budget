@@ -27,7 +27,7 @@ function Initialize() {
       {user ? (
         <>
           <SideNav />
-          <Routes />
+          <Routes uid={user.uid} />
         </>
       ) : (
         <SignInView />
