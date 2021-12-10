@@ -12,7 +12,7 @@ export default function ExpensesCard({
       });
     }
   };
-
+  console.warn('Exp Card', uid);
   return (
     <div className="card income-cards page-type-cards">
       <div>
@@ -47,7 +47,7 @@ export default function ExpensesCard({
             type="button"
             onClick={() => handleDelete('delete')}
           >
-            Delete Income
+            Delete Expense
           </button>
         </div>
       </div>

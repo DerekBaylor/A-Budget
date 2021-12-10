@@ -11,7 +11,7 @@ export default function ExpensesView({ uid }) {
   useEffect(() => {
     getExpenses(uid).then(setExpenseCards);
   }, []);
-
+  console.warn('Exp View', uid);
   return (
     <div className="expense-view-container">
       <div>Expense Graph</div>
@@ -26,12 +26,13 @@ export default function ExpensesView({ uid }) {
               setIncomeCards={setExpenseCards}
               uid={uid}
               setEditItem={setEditItem}
+              obj={editItem}
             />
           ))}
         </div>
         <hr />
         <div>
-          <ExpensesForm obj={editItem} setEditItem={setEditItem} />
+          <ExpensesForm uid={uid} obj={editItem} setEditItem={setEditItem} />
         </div>
       </div>
     </div>
@@ -39,5 +40,9 @@ export default function ExpensesView({ uid }) {
 }
 
 ExpensesView.propTypes = {
-  uid: PropTypes.string.isRequired,
+  uid: PropTypes.string,
+};
+
+ExpensesView.defaultProps = {
+  uid: '',
 };

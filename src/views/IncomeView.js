@@ -15,7 +15,7 @@ export default function IncomeView({ uid }) {
   return (
     <div className="income-view-container">
       <div>Income Graph</div>
-      <div>Income Percentage Breakdown</div>
+      <div>Income Legend</div>
       <hr />
       <div>
         <div className="income-card-container">
@@ -31,7 +31,7 @@ export default function IncomeView({ uid }) {
         </div>
         <hr />
         <div>
-          <IncomeForm obj={editItem} setEditItem={setEditItem} />
+          <IncomeForm uid={uid} obj={editItem} setEditItem={setEditItem} />
         </div>
       </div>
     </div>
@@ -39,5 +39,9 @@ export default function IncomeView({ uid }) {
 }
 
 IncomeView.propTypes = {
-  uid: PropTypes.string.isRequired,
+  uid: PropTypes.string,
+};
+
+IncomeView.defaultProps = {
+  uid: '',
 };

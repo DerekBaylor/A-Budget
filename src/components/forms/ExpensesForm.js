@@ -5,13 +5,16 @@ import { createExpense, updateExpense } from '../../api/data/expensesData';
 const initialState = {
   name: '',
   category: '',
-  value: '0',
-  freq: '',
-  recurring: false, // bool Checkbox
+  value: '',
+  freq: '0',
+  recurring: false,
+  uid: '',
 };
 
-export default function ExpensesForm({ obj, setEditItem }) {
+export default function ExpensesForm({ obj, setEditItem, uid }) {
   const [formInput, setFormInput] = useState(initialState);
+  console.warn('Exp Form', uid);
+  console.warn('Exp Form', obj);
 
   useEffect(() => {
     if (obj.firebaseKey) {
@@ -43,7 +46,7 @@ export default function ExpensesForm({ obj, setEditItem }) {
         resetForm();
       });
     } else {
-      createExpense({ ...formInput }).then(() => {
+      createExpense({ ...formInput, uid }).then(() => {
         resetForm();
       });
     }
@@ -79,6 +82,7 @@ export default function ExpensesForm({ obj, setEditItem }) {
               required
               placeholder="Choose Expense Category"
             >
+              <option value="Other">Choose Category</option>
               <option value="Housing">Housing</option>
               <option value="Utilities">Utilities</option>
               <option value="Vehicle">Vehicle</option>
@@ -95,8 +99,8 @@ export default function ExpensesForm({ obj, setEditItem }) {
             <span className="form-text">Expense Amount: </span>
             <input
               className="form-input"
-              id="income"
-              name="income"
+              id="value"
+              name="value"
               type="number"
               value={formInput.value}
               min="0"
@@ -117,6 +121,7 @@ export default function ExpensesForm({ obj, setEditItem }) {
               required
               value={formInput.freq}
             >
+              <option value="0">Choose Frequency</option>
               <option value="1">Once Per Month</option>
               <option value="2">Twice Per Month</option>
               <option value="3">Three Times Per Month</option>
@@ -136,6 +141,7 @@ export default function ExpensesForm({ obj, setEditItem }) {
                     required
                     value={formInput.recurring}
                   >
+                    <option value="false">Choose Option</option>
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                   </select>
@@ -161,8 +167,10 @@ export default function ExpensesForm({ obj, setEditItem }) {
 ExpensesForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
+  uid: PropTypes.string,
 };
 
 ExpensesForm.defaultProps = {
   obj: {},
+  uid: '',
 };

@@ -6,11 +6,12 @@ const initialState = {
   name: '',
   category: '',
   income: '0',
-  freq: '',
-  recurring: false, // bool Checkbox
+  freq: '0',
+  recurring: false,
+  uid: '',
 };
 
-export default function IncomeForm({ obj, setEditItem }) {
+export default function IncomeForm({ obj, setEditItem, uid }) {
   const [formInput, setFormInput] = useState(initialState);
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function IncomeForm({ obj, setEditItem }) {
         resetForm();
       });
     } else {
-      createIncome({ ...formInput }).then(() => {
+      createIncome({ ...formInput, uid }).then(() => {
         resetForm();
       });
     }
@@ -79,6 +80,7 @@ export default function IncomeForm({ obj, setEditItem }) {
               required
               placeholder="Choose Income Category"
             >
+              <option value="Other">Choose Category</option>
               <option value="Full Time">Full Time</option>
               <option value="Part Time">Part Time</option>
               <option value="Once">Only Once</option>
@@ -112,6 +114,7 @@ export default function IncomeForm({ obj, setEditItem }) {
               required
               value={formInput.freq}
             >
+              <option value="0">Choose Frequency</option>
               <option value="1">Once Per Month</option>
               <option value="2">Twice Per Month</option>
               <option value="3">Three Times Per Month</option>
@@ -131,6 +134,7 @@ export default function IncomeForm({ obj, setEditItem }) {
                     required
                     value={formInput.recurring}
                   >
+                    <option value="false">Choose Option</option>
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                   </select>
@@ -156,6 +160,7 @@ export default function IncomeForm({ obj, setEditItem }) {
 IncomeForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
+  uid: PropTypes.string.isRequired,
 };
 
 IncomeForm.defaultProps = {

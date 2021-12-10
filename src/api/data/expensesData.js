@@ -19,10 +19,10 @@ const getSingleExpense = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteExpense = (firebaseKey) => new Promise((resolve, reject) => {
+const deleteExpense = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios
     .delete(`${baseURL}/expenses/${firebaseKey}.json`)
-    .then(() => getExpenses().then(resolve))
+    .then(() => getExpenses(uid).then(resolve))
     .catch(reject);
 });
 

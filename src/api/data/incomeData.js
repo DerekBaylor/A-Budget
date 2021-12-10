@@ -19,10 +19,10 @@ const getSingleIncome = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteIncome = (firebaseKey) => new Promise((resolve, reject) => {
+const deleteIncome = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios
     .delete(`${baseURL}/income/${firebaseKey}.json`)
-    .then(() => getIncomes().then(resolve))
+    .then(() => getIncomes(uid).then(resolve))
     .catch(reject);
 });
 

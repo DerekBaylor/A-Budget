@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { deleteIncome, getIncomes } from '../../api/data/incomeData';
 
-export default function IncomeCard({
-  card, setCards, uid, setEditItem,
-}) {
+export default function IncomeCard({ card, uid, setEditItem }) {
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteIncome(card.firebaseKey).then(() => {
-        getIncomes(uid).then(setCards);
+        getIncomes(uid).then();
       });
     }
   };
@@ -57,7 +55,6 @@ export default function IncomeCard({
 
 IncomeCard.propTypes = {
   card: PropTypes.shape(PropTypes.obj).isRequired,
-  setCards: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
 };
