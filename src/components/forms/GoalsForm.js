@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { createAsset, updateAsset } from '../../api/data/assetsData';
+import { createGoal, updateGoal } from '../../api/data/goalsData';
 
 const initialState = {
   name: '',
   category: '',
-  value: '0',
+  goalTotal: '0',
+  currentValue: '0',
   uid: '',
 };
 
-export default function AssetsForm({ obj, setEditItem, uid }) {
+export default function GoalsForm({ obj, setEditItem, uid }) {
   const [formInput, setFormInput] = useState(initialState);
 
   useEffect(() => {
@@ -38,22 +39,22 @@ export default function AssetsForm({ obj, setEditItem, uid }) {
     e.preventDefault();
 
     if (obj.firebaseKey) {
-      updateAsset(obj.firebaseKey, formInput).then(() => {
+      updateGoal(obj.firebaseKey, formInput).then(() => {
         resetForm();
       });
     } else {
-      createAsset({ ...formInput, uid }).then(() => {
+      createGoal({ ...formInput, uid }).then(() => {
         resetForm();
       });
     }
   };
 
   return (
-    <div className="asset-form-container">
-      <form className="asset-form">
+    <div className="goal-form-container">
+      <form className="goal-form">
         <div className="form-group">
           <label className="form-label">
-            <span className="form-text">Asset Name: </span>
+            <span className="form-text">Goal Name: </span>
             <input
               className="form-input"
               id="name"
@@ -62,7 +63,7 @@ export default function AssetsForm({ obj, setEditItem, uid }) {
               value={formInput.name}
               onChange={handleChange}
               required
-              placeholder="Enter Asset Name"
+              placeholder="Enter Goal Name"
             />
           </label>
         </div>
@@ -76,12 +77,12 @@ export default function AssetsForm({ obj, setEditItem, uid }) {
               value={formInput.category}
               onChange={handleChange}
               required
-              placeholder="Choose Asset Category"
+              placeholder="Choose Goal Category"
             >
               <option value="Other">Choose Category</option>
               <option value="Retirement">Retirement</option>
               <option value="Savings">Savings</option>
-              <option value="Collectibles">Collectibles</option>
+              <option value="Debt Payoff">Debt Payoff</option>
               <option value="Stocks">Stocks</option>
               <option value="Real Estate">Real Estate</option>
               <option value="Other">Other</option>
@@ -90,17 +91,33 @@ export default function AssetsForm({ obj, setEditItem, uid }) {
         </div>
         <div>
           <label className="form-label">
-            <span className="form-text">Asset Value: </span>
+            <span className="form-text">Goal Total: </span>
             <input
               className="form-input"
-              id="value"
-              name="value"
+              id="goalTotal"
+              name="goalTotal"
               type="number"
-              value={formInput.value}
+              value={formInput.goalTotal}
               min="0"
               onChange={handleChange}
               required
-              placeholder="Enter Value"
+              placeholder="Enter Goal Total"
+            />
+          </label>
+        </div>
+        <div>
+          <label className="form-label">
+            <span className="form-text">Current Value: </span>
+            <input
+              className="form-input"
+              id="currentValue"
+              name="currentValue"
+              type="number"
+              value={formInput.currentValue}
+              min="0"
+              onChange={handleChange}
+              required
+              placeholder="Enter Current Value"
             />
           </label>
         </div>
@@ -118,12 +135,12 @@ export default function AssetsForm({ obj, setEditItem, uid }) {
   );
 }
 
-AssetsForm.propTypes = {
+GoalsForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
 };
 
-AssetsForm.defaultProps = {
+GoalsForm.defaultProps = {
   obj: {},
 };
