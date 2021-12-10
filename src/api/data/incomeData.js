@@ -3,10 +3,9 @@ import firebaseConfig from '../apiKeys';
 
 const baseURL = firebaseConfig.databaseURL;
 
-const getIncomes = () => new Promise((resolve, reject) => {
+const getIncomes = (uid) => new Promise((resolve, reject) => {
   axios
-  // .get(`${baseURL}/income.json="uid"&equalTo="${uid}"`)
-    .get(`${baseURL}/income.json`)
+    .get(`${baseURL}/income.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => resolve(Object.values(response.data)))
     .catch(reject);
 });

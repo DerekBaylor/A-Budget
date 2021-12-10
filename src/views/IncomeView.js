@@ -9,7 +9,7 @@ export default function IncomeView({ uid }) {
   const [editItem, setEditItem] = useState({});
 
   useEffect(() => {
-    getIncomes().then(setIncomeCards);
+    getIncomes(uid).then(setIncomeCards);
   }, []);
 
   return (

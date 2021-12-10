@@ -1,0 +1,47 @@
+{
+    "-MqS1RC7F_5Jdj5z0sG7": {
+        "firebaseKey": "-MqS1RC7F_5Jdj5z0sG7",
+        "name": "Rent",
+        "category": "Full-Time",
+        "value": 850,
+        "freq": 1,
+        "recurring": true,
+        "uid": "8OuZfF07l2UsQ9lYb86xEIHJLyU2"
+    },
+    "-MqS1WDqhiafQup0w8Qf": {
+        "firebaseKey": "-MqS1WDqhiafQup0w8Qf",
+        "name": "Electricity",
+        "category": "Utility",
+        "value": 1000,
+        "freq": 1,
+        "recurring": true,
+        "uid": "8OuZfF07l2UsQ9lYb86xEIHJLyU2"
+    },
+    "-MqS1WDqhiafQup0w8Qg": {
+        "firebaseKey": "-MqS1WDqhiafQup0w8Qg",
+        "name": "Car Payment",
+        "category": "Vehicle",
+        "value": 350,
+        "freq": 1,
+        "recurring": true,
+        "uid": "8OuZfF07l2UsQ9lYb86xEIHJLyU2"
+    },
+    "-MqS1WDqhiafQup0w8Qs": {
+        "firebaseKey": "-MqS1WDqhiafQup0w8Qs",
+        "name": "Spotify",
+        "category": "Vehicle",
+        "value": 15,
+        "freq": 1,
+        "recurring": true,
+        "uid": "8OuZfF07l2UsQ9lYb86xEIHJLyU2"
+    },
+    "-MqS1WDqhiafQup0w8Qd": {
+        "firebaseKey": "-MqS1WDqhiafQup0w8Qd",
+        "name": "Gas",
+        "category": "Vehicle",
+        "value": 50,
+        "freq": 1,
+        "recurring": true,
+        "uid": "8OuZfF07l2UsQ9lYb86xEIHJLyU2"
+    }
+}
