@@ -12,7 +12,6 @@ export default function IncomeView({ uid }) {
     getIncomes().then(setIncomeCards);
   }, []);
 
-  console.warn(uid);
   return (
     <div className="income-view-container">
       <div>Income Graph</div>

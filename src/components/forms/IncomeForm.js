@@ -6,7 +6,7 @@ const initialState = {
   name: '',
   category: '',
   income: '0',
-  paymentFreq: '',
+  freq: '',
   recurring: false, // bool Checkbox
 };
 
@@ -106,11 +106,11 @@ export default function IncomeForm({ obj, setEditItem }) {
             <span className="form-text">Payment Frequency:</span>
             <select
               className="form-input"
-              id="paymentFreq"
-              name="paymentFreq"
+              id="freq"
+              name="freq"
               onChange={handleChange}
               required
-              value={formInput.paymentFreq}
+              value={formInput.freq}
             >
               <option value="1">Once Per Month</option>
               <option value="2">Twice Per Month</option>
@@ -122,9 +122,19 @@ export default function IncomeForm({ obj, setEditItem }) {
             <div>
               <div className="form-check">
                 <label className="form-check-label" htmlFor="gridCheck1">
-                  <span className="form-text">Recurring Income</span>
+                  <span className="form-text">Recurring Income:</span>
+                  <select
+                    className="form-input"
+                    id="recurring"
+                    name="recurring"
+                    onChange={handleChange}
+                    required
+                    value={formInput.recurring}
+                  >
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
                 </label>
-                <input className="form-check-input" type="checkbox" />
               </div>
             </div>
           </div>
