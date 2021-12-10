@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { createIncome, updateIncome } from '../../api/data/incomeData';
+import {
+  createIncome,
+  getIncomes,
+  updateIncome,
+} from '../../api/data/incomeData';
 
 const initialState = {
   name: '',
   category: '',
-  income: '0',
+  income: '',
   freq: '0',
   recurring: false,
   uid: '',
 };
 
-export default function IncomeForm({ obj, setEditItem, uid }) {
+export default function IncomeForm({
+  obj, setEditItem, uid, setIncomeCards,
+}) {
   const [formInput, setFormInput] = useState(initialState);
 
   useEffect(() => {
@@ -41,10 +47,12 @@ export default function IncomeForm({ obj, setEditItem, uid }) {
 
     if (obj.firebaseKey) {
       updateIncome(obj.firebaseKey, formInput).then(() => {
+        getIncomes(uid).then(setIncomeCards);
         resetForm();
       });
     } else {
       createIncome({ ...formInput, uid }).then(() => {
+        getIncomes(uid).then(setIncomeCards);
         resetForm();
       });
     }
@@ -161,6 +169,7 @@ IncomeForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
+  setIncomeCards: PropTypes.func.isRequired,
 };
 
 IncomeForm.defaultProps = {

@@ -14,8 +14,8 @@ export default function GoalsView({ uid }) {
 
   return (
     <div className="goal-view-container">
-      <div>Income Graph</div>
-      <div>Income Legend</div>
+      <div>Goals Graph</div>
+      <div>Goals Legend</div>
       <hr />
       <div>
         <div className="goal-card-container">
@@ -23,7 +23,7 @@ export default function GoalsView({ uid }) {
             <GoalsCard
               key={card.firebaseKey}
               card={card}
-              setIncomeCards={setGoalCards}
+              setGoalCards={setGoalCards}
               uid={uid}
               setEditItem={setEditItem}
             />
@@ -31,7 +31,12 @@ export default function GoalsView({ uid }) {
         </div>
         <hr />
         <div>
-          <GoalsForm uid={uid} obj={editItem} setEditItem={setEditItem} />
+          <GoalsForm
+            uid={uid}
+            obj={editItem}
+            setEditItem={setEditItem}
+            setGoalCards={setGoalCards}
+          />
         </div>
       </div>
     </div>

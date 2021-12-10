@@ -14,8 +14,8 @@ export default function AssetsView({ uid }) {
 
   return (
     <div className="asset-view-container">
-      <div>Income Graph</div>
-      <div>Income Legend</div>
+      <div>Assets Graph</div>
+      <div>Assets Legend</div>
       <hr />
       <div>
         <div className="asset-card-container">
@@ -23,7 +23,7 @@ export default function AssetsView({ uid }) {
             <AssetsCard
               key={card.firebaseKey}
               card={card}
-              setIncomeCards={setAssetCards}
+              setAssetCards={setAssetCards}
               uid={uid}
               setEditItem={setEditItem}
             />
@@ -31,7 +31,12 @@ export default function AssetsView({ uid }) {
         </div>
         <hr />
         <div>
-          <AssetsForm uid={uid} obj={editItem} setEditItem={setEditItem} />
+          <AssetsForm
+            uid={uid}
+            obj={editItem}
+            setEditItem={setEditItem}
+            setAssetCards={setAssetCards}
+          />
         </div>
       </div>
     </div>

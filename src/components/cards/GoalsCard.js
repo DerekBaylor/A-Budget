@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { deleteGoal, getGoals } from '../../api/data/goalsData';
 
-export default function GoalsCard({ card, uid, setEditItem }) {
+export default function GoalsCard({
+  card, uid, setEditItem, setGoalCards,
+}) {
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteGoal(card.firebaseKey).then(() => {
-        getGoals(uid).then();
+        getGoals(uid).then(setGoalCards);
       });
     }
   };
@@ -54,4 +56,5 @@ GoalsCard.propTypes = {
   card: PropTypes.shape(PropTypes.obj).isRequired,
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
+  setGoalCards: PropTypes.func.isRequired,
 };

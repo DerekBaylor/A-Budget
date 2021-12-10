@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { createGoal, updateGoal } from '../../api/data/goalsData';
+import { createGoal, getGoals, updateGoal } from '../../api/data/goalsData';
 
 const initialState = {
   name: '',
   category: '',
-  goalTotal: '0',
-  currentValue: '0',
+  goalTotal: '',
+  currentValue: '',
   uid: '',
 };
 
-export default function GoalsForm({ obj, setEditItem, uid }) {
+export default function GoalsForm({
+  obj, setEditItem, uid, setGoalCards,
+}) {
   const [formInput, setFormInput] = useState(initialState);
 
   useEffect(() => {
@@ -40,10 +42,12 @@ export default function GoalsForm({ obj, setEditItem, uid }) {
 
     if (obj.firebaseKey) {
       updateGoal(obj.firebaseKey, formInput).then(() => {
+        getGoals(uid).then(setGoalCards);
         resetForm();
       });
     } else {
       createGoal({ ...formInput, uid }).then(() => {
+        getGoals(uid).then(setGoalCards);
         resetForm();
       });
     }
@@ -139,6 +143,7 @@ GoalsForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
+  setGoalCards: PropTypes.func.isRequired,
 };
 
 GoalsForm.defaultProps = {
