@@ -31,7 +31,12 @@ export default function IncomeView({ uid }) {
         </div>
         <hr />
         <div>
-          <IncomeForm uid={uid} obj={editItem} setEditItem={setEditItem} />
+          <IncomeForm
+            uid={uid}
+            obj={editItem}
+            setEditItem={setEditItem}
+            setIncomeCards={setIncomeCards}
+          />
         </div>
       </div>
     </div>

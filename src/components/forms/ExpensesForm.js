@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { createExpense, updateExpense } from '../../api/data/expensesData';
+import {
+  createExpense,
+  getExpenses,
+  updateExpense,
+} from '../../api/data/expensesData';
 
 const initialState = {
   name: '',
@@ -11,10 +15,13 @@ const initialState = {
   uid: '',
 };
 
-export default function ExpensesForm({ obj, setEditItem, uid }) {
+export default function ExpensesForm({
+  obj,
+  setEditItem,
+  uid,
+  setExpenseCards,
+}) {
   const [formInput, setFormInput] = useState(initialState);
-  console.warn('Exp Form', uid);
-  console.warn('Exp Form', obj);
 
   useEffect(() => {
     if (obj.firebaseKey) {
@@ -43,10 +50,12 @@ export default function ExpensesForm({ obj, setEditItem, uid }) {
 
     if (obj.firebaseKey) {
       updateExpense(obj.firebaseKey, formInput).then(() => {
+        getExpenses(uid).then(setExpenseCards);
         resetForm();
       });
     } else {
       createExpense({ ...formInput, uid }).then(() => {
+        getExpenses(uid).then(setExpenseCards);
         resetForm();
       });
     }
@@ -168,6 +177,7 @@ ExpensesForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
   uid: PropTypes.string,
+  setExpenseCards: PropTypes.func.isRequired,
 };
 
 ExpensesForm.defaultProps = {

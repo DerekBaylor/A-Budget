@@ -11,7 +11,7 @@ export default function ExpensesView({ uid }) {
   useEffect(() => {
     getExpenses(uid).then(setExpenseCards);
   }, []);
-  console.warn('Exp View', uid);
+
   return (
     <div className="expense-view-container">
       <div>Expense Graph</div>
@@ -23,7 +23,7 @@ export default function ExpensesView({ uid }) {
             <ExpensesCard
               key={card.firebaseKey}
               card={card}
-              setIncomeCards={setExpenseCards}
+              setExpenseCards={setExpenseCards}
               uid={uid}
               setEditItem={setEditItem}
               obj={editItem}
@@ -32,7 +32,12 @@ export default function ExpensesView({ uid }) {
         </div>
         <hr />
         <div>
-          <ExpensesForm uid={uid} obj={editItem} setEditItem={setEditItem} />
+          <ExpensesForm
+            uid={uid}
+            obj={editItem}
+            setEditItem={setEditItem}
+            setExpenseCards={setExpenseCards}
+          />
         </div>
       </div>
     </div>

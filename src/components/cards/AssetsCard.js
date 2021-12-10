@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { deleteAsset, getAssets } from '../../api/data/assetsData';
 
-export default function AssetsCard({ card, uid, setEditItem }) {
+export default function AssetsCard({
+  card, uid, setEditItem, setAssetCards,
+}) {
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteAsset(card.firebaseKey).then(() => {
-        getAssets(uid).then();
+        getAssets(uid).then(setAssetCards);
       });
     }
   };
@@ -39,7 +41,7 @@ export default function AssetsCard({ card, uid, setEditItem }) {
             type="button"
             onClick={() => handleDelete('delete')}
           >
-            Delete Income
+            Delete Asset
           </button>
         </div>
       </div>
@@ -51,4 +53,5 @@ AssetsCard.propTypes = {
   card: PropTypes.shape(PropTypes.obj).isRequired,
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
+  setAssetCards: PropTypes.func.isRequired,
 };

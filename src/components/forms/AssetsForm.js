@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { createAsset, updateAsset } from '../../api/data/assetsData';
+import { createAsset, getAssets, updateAsset } from '../../api/data/assetsData';
 
 const initialState = {
   name: '',
   category: '',
-  value: '0',
+  value: '',
   uid: '',
 };
 
-export default function AssetsForm({ obj, setEditItem, uid }) {
+export default function AssetsForm({
+  obj, setEditItem, uid, setAssetCards,
+}) {
   const [formInput, setFormInput] = useState(initialState);
 
   useEffect(() => {
@@ -39,10 +41,12 @@ export default function AssetsForm({ obj, setEditItem, uid }) {
 
     if (obj.firebaseKey) {
       updateAsset(obj.firebaseKey, formInput).then(() => {
+        getAssets(uid).then(setAssetCards);
         resetForm();
       });
     } else {
       createAsset({ ...formInput, uid }).then(() => {
+        getAssets(uid).then(setAssetCards);
         resetForm();
       });
     }
@@ -120,8 +124,9 @@ export default function AssetsForm({ obj, setEditItem, uid }) {
 
 AssetsForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
-  setEditItem: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
+  setEditItem: PropTypes.func.isRequired,
+  setAssetCards: PropTypes.func.isRequired,
 };
 
 AssetsForm.defaultProps = {

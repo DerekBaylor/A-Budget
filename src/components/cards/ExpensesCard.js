@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import { deleteExpense, getExpenses } from '../../api/data/expensesData';
 
 export default function ExpensesCard({
-  card, setCards, uid, setEditItem,
+  card,
+  uid,
+  setEditItem,
+  setExpenseCards,
 }) {
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteExpense(card.firebaseKey).then(() => {
-        getExpenses(uid).then(setCards);
+        getExpenses(uid).then(setExpenseCards);
       });
     }
   };
-  console.warn('Exp Card', uid);
+
   return (
     <div className="card income-cards page-type-cards">
       <div>
@@ -57,7 +60,7 @@ export default function ExpensesCard({
 
 ExpensesCard.propTypes = {
   card: PropTypes.shape(PropTypes.obj).isRequired,
-  setCards: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
+  setExpenseCards: PropTypes.func.isRequired,
 };
