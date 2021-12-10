@@ -38,7 +38,15 @@ body {
           display: flex;
           flex-direction: row;
         }
-        .card-btn{
+        .card-title{
+          display: flex;
+          justify-content: center ;
+          background: none;
+          text-decoration: underline;
+          color: #03144d;
+          font-weight: 700;
+        }
+        .del-btn{
           display: flex;
           justify-content: center ;
           background: none;

@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createIncome, updateIncome } from '../../api/data/incomeData';
 
 const initialState = {
   name: '',
-  Category: '', // menu choice Full-Time, Part-Time, One-Time
-  Income: '',
-  PaymentFreq: '', // menu choice Once, Weekly, Bi-Weekly, Monthly
-  Recurring: false, // bool Checkbox
+  category: '',
+  income: '0',
+  paymentFreq: '',
+  recurring: false, // bool Checkbox
 };
-export default function IncomeForm({ obj }) {
+
+export default function IncomeForm({ obj, setEditItem }) {
   const [formInput, setFormInput] = useState(initialState);
-  const history = useHistory();
 
   useEffect(() => {
     if (obj.firebaseKey) {
       setFormInput(obj);
     } else {
-      setFormInput(initialState);
+      setFormInput({ ...initialState });
     }
   }, [obj]);
 
@@ -33,6 +32,7 @@ export default function IncomeForm({ obj }) {
 
   const resetForm = () => {
     setFormInput(initialState);
+    setEditItem({});
   };
 
   const handleSubmit = (e) => {
@@ -41,12 +41,10 @@ export default function IncomeForm({ obj }) {
     if (obj.firebaseKey) {
       updateIncome(obj.firebaseKey, formInput).then(() => {
         resetForm();
-        history.push('/');
       });
     } else {
       createIncome({ ...formInput }).then(() => {
         resetForm();
-        history.push('/');
       });
     }
   };
@@ -72,15 +70,19 @@ export default function IncomeForm({ obj }) {
         <div>
           <label className="form-label">
             <span className="form-text">Category Name:</span>
-            <input
+            <select
               className="form-input"
-              id="name"
-              name="name"
+              id="category"
+              name="category"
               value={formInput.category}
               onChange={handleChange}
               required
               placeholder="Choose Income Category"
-            />
+            >
+              <option value="Full Time">Full Time</option>
+              <option value="Part Time">Part Time</option>
+              <option value="Once">Only Once</option>
+            </select>
           </label>
         </div>
         <div>
@@ -92,6 +94,7 @@ export default function IncomeForm({ obj }) {
               name="income"
               type="number"
               value={formInput.income}
+              min="0"
               onChange={handleChange}
               required
               placeholder="Enter Income Amount"
@@ -103,11 +106,11 @@ export default function IncomeForm({ obj }) {
             <span className="form-text">Payment Frequency:</span>
             <select
               className="form-input"
-              id="freq"
-              name="freq"
+              id="paymentFreq"
+              name="paymentFreq"
               onChange={handleChange}
               required
-              value={formInput.freq}
+              value={formInput.paymentFreq}
             >
               <option value="1">Once Per Month</option>
               <option value="2">Twice Per Month</option>
@@ -142,6 +145,7 @@ export default function IncomeForm({ obj }) {
 
 IncomeForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
+  setEditItem: PropTypes.func.isRequired,
 };
 
 IncomeForm.defaultProps = {
