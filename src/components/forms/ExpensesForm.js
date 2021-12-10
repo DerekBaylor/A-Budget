@@ -53,8 +53,8 @@ export default function ExpensesForm({ obj, setEditItem, uid }) {
   };
 
   return (
-    <div className="income-form-container">
-      <form className="income-form">
+    <div className="expense-form-container">
+      <form className="expense-form">
         <div className="form-group">
           <label className="form-label">
             <span className="form-text">Expense Name: </span>
