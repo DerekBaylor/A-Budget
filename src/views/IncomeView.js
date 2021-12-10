@@ -6,6 +6,7 @@ import IncomeForm from '../components/forms/IncomeForm';
 
 export default function IncomeView({ uid }) {
   const [incomeCards, setIncomeCards] = useState([]);
+  const [editItem, setEditItem] = useState({});
 
   useEffect(() => {
     getIncomes().then(setIncomeCards);
@@ -23,14 +24,15 @@ export default function IncomeView({ uid }) {
             <IncomeCard
               key={card.firebaseKey}
               card={card}
-              setCards={setIncomeCards}
+              setIncomeCards={setIncomeCards}
               uid={uid}
+              setEditItem={setEditItem}
             />
           ))}
         </div>
         <hr />
         <div>
-          <IncomeForm />
+          <IncomeForm obj={editItem} setEditItem={setEditItem} />
         </div>
       </div>
     </div>
