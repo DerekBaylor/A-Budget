@@ -4,7 +4,6 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as RiIcons from 'react-icons/ri';
 import { IconContext } from 'react-icons';
-import { SideNavData } from './componentData/sideNavData';
 import { signOutUser } from '../api/auth';
 
 export default function SideNav() {
@@ -13,41 +12,118 @@ export default function SideNav() {
   const showSidebar = () => setsidebar(!sidebar);
 
   return (
-    <>
+    <div className="side-nav">
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className="navBar">
-          <button type="button" className="menu-bars" onClick={showSidebar}>
-            <FaIcons.FaBars />
+          <button
+            type="button"
+            className="menu-bars nav-btn"
+            onClick={showSidebar}
+          >
+            <span>
+              <FaIcons.FaBars />
+            </span>
           </button>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className="nav-menu-items">
             <li className="navbar-toggle">
-              <Link to="/budget" className="menu-bars" onClick={showSidebar}>
-                <AiIcons.AiOutlineClose />
+              <button
+                type="button"
+                className="menu-close nav-btn"
+                onClick={showSidebar}
+              >
+                <span>
+                  <AiIcons.AiOutlineClose /> Close
+                </span>
+              </button>
+            </li>
+            <li className="nav-item nav-text">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/"
+                onClick={showSidebar}
+              >
+                <span className="nav-text">
+                  <RiIcons.RiHome2Line /> Home
+                </span>
               </Link>
             </li>
-            {SideNavData.map((item) => (
-              <li className={item.cName}>
-                <Link to={item.path} onClick={showSidebar} aria-current="page">
-                  {item.icon}
-                  <span>{item.title}</span>
-                </Link>
-              </li>
-            ))}
-            <li className="nav-item">
+            <li className="nav-item nav-text">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/budget"
+                onClick={showSidebar}
+              >
+                <span className="nav-text">
+                  <RiIcons.RiFileListLine /> Budget
+                </span>
+              </Link>
+            </li>
+            <li className="nav-item nav-text">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/income"
+                onClick={showSidebar}
+              >
+                <span className="nav-text">
+                  <RiIcons.RiMoneyDollarBoxLine /> Income
+                </span>
+              </Link>
+            </li>
+            <li className="nav-item nav-text">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/liabilities"
+                onClick={showSidebar}
+              >
+                <span className="nav-text">
+                  <RiIcons.RiBriefcase2Line /> Liabilities
+                </span>
+              </Link>
+            </li>
+            <li className="nav-item nav-text">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/assets"
+                onClick={showSidebar}
+              >
+                <span className="nav-text">
+                  <RiIcons.RiLineChartFill /> Assets
+                </span>
+              </Link>
+            </li>
+            <li className="nav-item nav-text">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/goals"
+                onClick={showSidebar}
+              >
+                <span className="nav-text">
+                  <RiIcons.RiTrophyLine /> Goals
+                </span>
+              </Link>
+            </li>
+            <li className="nav-item nav-btn">
               <button
                 onClick={signOutUser}
                 type="button"
-                className="btn sign-out-btn"
+                className="btn sign-out-btn nav-btn"
               >
-                <RiIcons.RiSendPlaneLine />
-                <span className="sign-out-text">Sign Out</span>
+                <span className="sign-out-text">
+                  <RiIcons.RiSendPlaneLine /> Sign Out
+                </span>
               </button>
             </li>
           </ul>
         </nav>
       </IconContext.Provider>
-    </>
+    </div>
   );
 }
