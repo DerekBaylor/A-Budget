@@ -78,11 +78,11 @@ export default function SideNav() {
               <Link
                 className="nav-link active"
                 aria-current="page"
-                to="/liabilities"
+                to="/expenses"
                 onClick={showSidebar}
               >
                 <span className="nav-text">
-                  <RiIcons.RiBriefcase2Line /> Liabilities
+                  <RiIcons.RiBriefcase2Line /> Expenses
                 </span>
               </Link>
             </li>

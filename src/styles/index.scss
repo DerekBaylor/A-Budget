@@ -5,75 +5,9 @@ body {
   background-color: $favColor !important;
 }
 
-.income-view-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .income-form-container {
-    .income-form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .form-text {
-      margin: 1rem;
-      font-size: 1.1rem;
-    }
-    .form-check{
-      margin-left: 4rem;
-    }
-    .form-btn-group{
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-  }
-  .income-card-container{
-    .income-cards{
-      max-width: 200rem;
-      margin: .5rem;
-      .card-body{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        .card-data {
-          display: flex-start;
-          flex-direction: column;
-          .card-title{
-            background: none;
-            text-decoration: underline;
-            color: #03144d;
-            font-weight: 700;
-          }
-          .card-value{
-            margin-left: 1rem;
-          }
-          .card-info{
-            display: flex;
-            flex-direction: column;
-            justify-content: end;
-          }
-        }
-        .card-text{
-          font-size: 1rem;
-        }
-      }
-      .card-btn-group{
-        display: flex;
-        justify-content: right;
-        .del-btn{
-          background: none;
-          text-decoration: underline;
-          color: red;
-          font-weight: 700;
-        }
-      }
-    }
-  }
-}
 
 .menu-bars {
+  margin-top: .5rem;
   margin-left: 2rem;
   color: #f5f5f5;
   font-size: 2rem;
@@ -144,3 +78,139 @@ body {
     align-items: center;
   }
 } 
+
+.income-view-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .income-form-container {
+      .income-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .form-text {
+        margin: 1rem;
+        font-size: 1.1rem;
+      }
+      .form-check{
+        margin-left: 4rem;
+      }
+      .form-btn-group{
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+    }
+    .income-card-container{
+      .income-cards{
+        max-width: 200rem;
+        margin: .5rem;
+        .card-body{
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          .card-data {
+            display: flex-start;
+            flex-direction: column;
+            .card-title{
+              background: none;
+              text-decoration: underline;
+              color: #03144d;
+              font-weight: 700;
+            }
+            .card-value{
+              margin-left: 1rem;
+            }
+            .card-info{
+              display: flex;
+              flex-direction: column;
+              justify-content: end;
+            }
+          }
+          .card-text{
+            font-size: 1rem;
+          }
+        }
+        .card-btn-group{
+          display: flex;
+          justify-content: right;
+          .del-btn{
+            background: none;
+            text-decoration: underline;
+            color: red;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+ }
+
+ .expense-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .expense-form-container {
+    .expense-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .form-text {
+      margin: 1rem;
+      font-size: 1.1rem;
+    }
+    .form-check{
+      margin-left: 4rem;
+    }
+    .form-btn-group{
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
+  .expense-card-container{
+    .income-cards{
+      max-width: 200rem;
+      margin: .5rem;
+      .card-body{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        .card-data {
+          display: flex-start;
+          flex-direction: column;
+          .card-title{
+            background: none;
+            text-decoration: underline;
+            color: #03144d;
+            font-weight: 700;
+          }
+          .card-value{
+            margin-left: 1rem;
+          }
+          .card-info{
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+          }
+        }
+        .card-text{
+          font-size: 1rem;
+        }
+      }
+      .card-btn-group{
+        display: flex;
+        justify-content: right;
+        .del-btn{
+          background: none;
+          text-decoration: underline;
+          color: red;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

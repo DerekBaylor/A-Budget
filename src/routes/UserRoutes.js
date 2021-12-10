@@ -6,7 +6,7 @@ import BudgetView from '../views/BudgetView';
 import IncomeView from '../views/IncomeView';
 import AssetsView from '../views/AssetsView';
 import GoalsView from '../views/GoalsView';
-import LiabilitiesView from '../views/LiabilitiesView';
+import ExpensesView from '../views/ExpensesView';
 
 export default function UserRoutes({ uid }) {
   return (
@@ -25,8 +25,8 @@ export default function UserRoutes({ uid }) {
         />
         <Route
           exact
-          path="/liabilities"
-          component={() => <LiabilitiesView uid={uid} />}
+          path="/expenses"
+          component={() => <ExpensesView uid={uid} />}
         />
         <Route
           exact

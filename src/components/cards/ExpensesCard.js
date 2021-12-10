@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { deleteIncome, getIncomes } from '../../api/data/incomeData';
+import { deleteExpense, getExpenses } from '../../api/data/expensesData';
 
-export default function IncomeCard({ card, uid, setEditItem }) {
+export default function ExpensesCard({
+  card, setCards, uid, setEditItem,
+}) {
   const handleDelete = (method) => {
     if (method === 'delete') {
-      deleteIncome(card.firebaseKey).then(() => {
-        getIncomes(uid).then();
+      deleteExpense(card.firebaseKey).then(() => {
+        getExpenses(uid).then(setCards);
       });
     }
   };
-
+  console.warn('Exp Card', uid);
   return (
     <div className="card income-cards page-type-cards">
       <div>
@@ -24,7 +26,7 @@ export default function IncomeCard({ card, uid, setEditItem }) {
               <h5>{card.name}</h5>
             </button>
             <div className="card-value">
-              <h5>${card.income}</h5>
+              <h5>${card.value}</h5>
             </div>
           </div>
           <div className="card-info">
@@ -45,7 +47,7 @@ export default function IncomeCard({ card, uid, setEditItem }) {
             type="button"
             onClick={() => handleDelete('delete')}
           >
-            Delete Income
+            Delete Expense
           </button>
         </div>
       </div>
@@ -53,8 +55,9 @@ export default function IncomeCard({ card, uid, setEditItem }) {
   );
 }
 
-IncomeCard.propTypes = {
+ExpensesCard.propTypes = {
   card: PropTypes.shape(PropTypes.obj).isRequired,
+  setCards: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
 };

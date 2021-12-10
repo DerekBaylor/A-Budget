@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { createIncome, updateIncome } from '../../api/data/incomeData';
+import { createExpense, updateExpense } from '../../api/data/expensesData';
 
 const initialState = {
   name: '',
   category: '',
-  income: '0',
+  value: '',
   freq: '0',
   recurring: false,
   uid: '',
 };
 
-export default function IncomeForm({ obj, setEditItem, uid }) {
+export default function ExpensesForm({ obj, setEditItem, uid }) {
   const [formInput, setFormInput] = useState(initialState);
+  console.warn('Exp Form', uid);
+  console.warn('Exp Form', obj);
 
   useEffect(() => {
     if (obj.firebaseKey) {
@@ -40,11 +42,11 @@ export default function IncomeForm({ obj, setEditItem, uid }) {
     e.preventDefault();
 
     if (obj.firebaseKey) {
-      updateIncome(obj.firebaseKey, formInput).then(() => {
+      updateExpense(obj.firebaseKey, formInput).then(() => {
         resetForm();
       });
     } else {
-      createIncome({ ...formInput, uid }).then(() => {
+      createExpense({ ...formInput, uid }).then(() => {
         resetForm();
       });
     }
@@ -55,7 +57,7 @@ export default function IncomeForm({ obj, setEditItem, uid }) {
       <form className="income-form">
         <div className="form-group">
           <label className="form-label">
-            <span className="form-text">Income Name:</span>
+            <span className="form-text">Expense Name: </span>
             <input
               className="form-input"
               id="name"
@@ -64,13 +66,13 @@ export default function IncomeForm({ obj, setEditItem, uid }) {
               value={formInput.name}
               onChange={handleChange}
               required
-              placeholder="Enter Income Name"
+              placeholder="Enter Expense Name"
             />
           </label>
         </div>
         <div>
           <label className="form-label">
-            <span className="form-text">Category Name:</span>
+            <span className="form-text">Category Name: </span>
             <select
               className="form-input"
               id="category"
@@ -78,34 +80,39 @@ export default function IncomeForm({ obj, setEditItem, uid }) {
               value={formInput.category}
               onChange={handleChange}
               required
-              placeholder="Choose Income Category"
+              placeholder="Choose Expense Category"
             >
               <option value="Other">Choose Category</option>
-              <option value="Full Time">Full Time</option>
-              <option value="Part Time">Part Time</option>
-              <option value="Once">Only Once</option>
+              <option value="Housing">Housing</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Vehicle">Vehicle</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Medical">Medical</option>
+              <option value="Subscriptions">Subscriptions</option>
+              <option value="Living Expense">Living Expense</option>
+              <option value="Other">Other</option>
             </select>
           </label>
         </div>
         <div>
           <label className="form-label">
-            <span className="form-text">Income Amount:</span>
+            <span className="form-text">Expense Amount: </span>
             <input
               className="form-input"
-              id="income"
-              name="income"
+              id="value"
+              name="value"
               type="number"
-              value={formInput.income}
+              value={formInput.value}
               min="0"
               onChange={handleChange}
               required
-              placeholder="Enter Income Amount"
+              placeholder="Enter Expense Amount"
             />
           </label>
         </div>
         <div>
           <label className="form-label">
-            <span className="form-text">Payment Frequency:</span>
+            <span className="form-text">Payment Frequency: </span>
             <select
               className="form-input"
               id="freq"
@@ -125,7 +132,7 @@ export default function IncomeForm({ obj, setEditItem, uid }) {
             <div>
               <div className="form-check">
                 <label className="form-check-label" htmlFor="gridCheck1">
-                  <span className="form-text">Recurring Income:</span>
+                  <span className="form-text">Recurring Expense: </span>
                   <select
                     className="form-input"
                     id="recurring"
@@ -157,12 +164,13 @@ export default function IncomeForm({ obj, setEditItem, uid }) {
   );
 }
 
-IncomeForm.propTypes = {
+ExpensesForm.propTypes = {
   obj: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
-  uid: PropTypes.string.isRequired,
+  uid: PropTypes.string,
 };
 
-IncomeForm.defaultProps = {
+ExpensesForm.defaultProps = {
   obj: {},
+  uid: '',
 };
