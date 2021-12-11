@@ -1,0 +1,30 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+export default function BvAssetsCard({ card }) {
+  return (
+    <div className="card asset-cards page-type-cards">
+      <div>
+        <div className="card-body">
+          <div className="card-data">
+            <div className="card-title">
+              <h5>{card.name}</h5>
+            </div>
+            <div className="card-value">
+              <h5>${card.value}</h5>
+            </div>
+          </div>
+          <div className="card-info">
+            <div className="card-text">
+              <span>{card.category}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+BvAssetsCard.propTypes = {
+  card: PropTypes.shape(PropTypes.obj).isRequired,
+};

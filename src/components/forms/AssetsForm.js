@@ -7,6 +7,7 @@ const initialState = {
   category: '',
   value: '',
   uid: '',
+  type: 'asset',
 };
 
 export default function AssetsForm({

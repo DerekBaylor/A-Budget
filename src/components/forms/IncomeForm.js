@@ -13,6 +13,7 @@ const initialState = {
   freq: '0',
   recurring: false,
   uid: '',
+  type: 'income',
 };
 
 export default function IncomeForm({
@@ -91,7 +92,7 @@ export default function IncomeForm({
               <option value="Other">Choose Category</option>
               <option value="Full Time">Full Time</option>
               <option value="Part Time">Part Time</option>
-              <option value="Once">Only Once</option>
+              <option value="Gig">Gig Work</option>
             </select>
           </label>
         </div>

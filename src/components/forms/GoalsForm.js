@@ -8,6 +8,7 @@ const initialState = {
   goalTotal: '',
   currentValue: '',
   uid: '',
+  type: 'goal',
 };
 
 export default function GoalsForm({
