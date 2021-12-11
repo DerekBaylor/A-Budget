@@ -13,6 +13,7 @@ const initialState = {
   freq: '0',
   recurring: false,
   uid: '',
+  type: 'expense',
 };
 
 export default function ExpensesForm({
