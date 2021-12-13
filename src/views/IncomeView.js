@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getIncomes } from '../api/data/incomeData';
 import IncomeCard from '../components/cards/IncomeCard';
 import IncomeForm from '../components/forms/IncomeForm';
+import IncomeChart from '../components/charts/IncomeChart';
 
 export default function IncomeView({ uid }) {
   const [incomeCards, setIncomeCards] = useState([]);
@@ -14,7 +15,9 @@ export default function IncomeView({ uid }) {
 
   return (
     <div className="income-view-container">
-      <div>Income Graph</div>
+      <div>
+        <IncomeChart uid={uid} />
+      </div>
       <div>Income Legend</div>
       <hr />
       <div>

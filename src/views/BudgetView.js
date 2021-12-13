@@ -8,7 +8,7 @@ import BvIncomeCard from '../components/cards/BvIncomeCard';
 import BvExpensesCard from '../components/cards/BvExpenseCard';
 import BvAssetsCard from '../components/cards/BvAssetsCard';
 import BvGoalsCard from '../components/cards/BvGoalCard';
-import TotalIncomeCard from '../components/cards/TotalIncomeCard';
+// import TotalIncomeCard from '../components/cards/TotalIncomeCard';
 
 export default function BudgetView({ uid }) {
   const [incomeCards, setIncomeCards] = useState([]);
@@ -41,7 +41,9 @@ export default function BudgetView({ uid }) {
           ))}
           <div className="total-value">
             <h3 id="totalIncomes">
-              <TotalIncomeCard uid={uid} />
+              {/* <TotalIncomeCard
+                uid={uid}
+              /> */}
             </h3>
           </div>
         </div>
