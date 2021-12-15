@@ -9,11 +9,10 @@ import {
 const initialState = {
   name: '',
   category: '',
-  income: '',
-  freq: '0',
-  recurring: false,
+  income: 0,
+  freq: 0,
+  recurring: '',
   uid: '',
-  type: 'income',
 };
 
 export default function IncomeForm({
@@ -28,6 +27,10 @@ export default function IncomeForm({
       setFormInput({ ...initialState });
     }
   }, [obj]);
+
+  const valueConverter = () => {
+    formInput.income *= 1;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,6 +48,7 @@ export default function IncomeForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    valueConverter();
 
     if (obj.firebaseKey) {
       updateIncome(obj.firebaseKey, formInput).then(() => {
@@ -52,7 +56,10 @@ export default function IncomeForm({
         resetForm();
       });
     } else {
-      createIncome({ ...formInput, uid }).then(() => {
+      createIncome({
+        ...formInput,
+        uid,
+      }).then(() => {
         getIncomes(uid).then(setIncomeCards);
         resetForm();
       });
@@ -98,7 +105,7 @@ export default function IncomeForm({
         </div>
         <div>
           <label className="form-label">
-            <span className="form-text">Income Amount:</span>
+            <span className="form-text">Monthly Income:</span>
             <input
               className="form-input"
               id="income"
@@ -108,28 +115,10 @@ export default function IncomeForm({
               min="0"
               onChange={handleChange}
               required
-              placeholder="Enter Income Amount"
             />
           </label>
         </div>
         <div>
-          <label className="form-label">
-            <span className="form-text">Payment Frequency:</span>
-            <select
-              className="form-input"
-              id="freq"
-              name="freq"
-              onChange={handleChange}
-              required
-              value={formInput.freq}
-            >
-              <option value="0">Choose Frequency</option>
-              <option value="1">Once Per Month</option>
-              <option value="2">Twice Per Month</option>
-              <option value="3">Three Times Per Month</option>
-              <option value="4">Four Times Per Month</option>
-            </select>
-          </label>
           <div>
             <div>
               <div className="form-check">
@@ -143,7 +132,7 @@ export default function IncomeForm({
                     required
                     value={formInput.recurring}
                   >
-                    <option value="false">Choose Option</option>
+                    <option value="">Choose Option</option>
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                   </select>

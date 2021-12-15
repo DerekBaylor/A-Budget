@@ -19,9 +19,6 @@ export default function BvIncomeCard({ card }) {
               <span>{card.category}</span>
             </div>
             <div className="card-text">
-              <span>{card.freq}x/month</span>
-            </div>
-            <div className="card-text">
               <span>Recurring: {card.recurring}</span>
             </div>
           </div>
