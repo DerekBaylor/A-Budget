@@ -49,23 +49,10 @@ const createIncome = (obj, uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const totalIncome = (uid) => new Promise((resolve, reject) => {
-  getIncomes(uid)
-    .then((incomeArray) => {
-      const addIncomes = incomeArray.reduce(
-        (prevValue, curValue) => prevValue + curValue.income,
-        0,
-      );
-      resolve(addIncomes);
-    })
-    .catch(reject);
-});
-
 export {
   getIncomes,
   getSingleIncome,
   deleteIncome,
   updateIncome,
   createIncome,
-  totalIncome,
 };

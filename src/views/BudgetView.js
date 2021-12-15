@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getIncomes, totalIncome } from '../api/data/incomeData';
+import { getIncomes } from '../api/data/incomeData';
 import { getExpenses } from '../api/data/expensesData';
 import { getAssets } from '../api/data/assetsData';
 import { getGoals } from '../api/data/goalsData';
@@ -8,22 +8,36 @@ import BvIncomeCard from '../components/cards/BvIncomeCard';
 import BvExpensesCard from '../components/cards/BvExpenseCard';
 import BvAssetsCard from '../components/cards/BvAssetsCard';
 import BvGoalsCard from '../components/cards/BvGoalCard';
-// import TotalIncomeCard from '../components/cards/TotalIncomeCard';
 
 export default function BudgetView({ uid }) {
   const [incomeCards, setIncomeCards] = useState([]);
   const [expenseCards, setExpenseCards] = useState([]);
   const [assetCards, setAssetCards] = useState([]);
   const [goalCards, setGoaleCards] = useState([]);
-
-  totalIncome().then(console.warn('BV Incomes'));
+  const [incTotal, setIncTotal] = useState(0);
 
   useEffect(() => {
-    getIncomes(uid).then(setIncomeCards);
+    getIncomes(uid).then((incomeArray) => {
+      setIncomeCards(incomeArray);
+    });
+    // .then(() => {
+    //   console.warn(incomeCards);
+    //   const [...incomeCount] = incomeCards.map((card) => card.income);
+    //   const totalIncome = incomeCount.reduce((a, b) => a + b, 0);
+    //   console.warn(totalIncome);
+    //   setIncTotal(totalIncome);
+    // });
     getExpenses(uid).then(setExpenseCards);
     getAssets(uid).then(setAssetCards);
     getGoals(uid).then(setGoaleCards);
   }, []);
+
+  useEffect(() => {
+    // console.warn('2', incomeCards);
+    const [...incomeCount] = incomeCards.map((card) => card.income);
+    const totalIncome = incomeCount.reduce((a, b) => a + b, 0);
+    setIncTotal(totalIncome);
+  });
 
   return (
     <div className="budget-view-container">
@@ -36,15 +50,11 @@ export default function BudgetView({ uid }) {
         <h1>Category Breakdown</h1>
         <div className="budget-card-container">
           <h2 className="budget-income-cards">Incomes</h2>
-          {incomeCards.map((card) => (
+          {incomeCards?.map((card) => (
             <BvIncomeCard key={card.firebaseKey} card={card} />
           ))}
           <div className="total-value">
-            <h3 id="totalIncomes">
-              {/* <TotalIncomeCard
-                uid={uid}
-              /> */}
-            </h3>
+            <h3 id="totalIncomes">Total Income: $ {incTotal}</h3>
           </div>
         </div>
         <hr />
