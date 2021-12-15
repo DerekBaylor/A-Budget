@@ -5,7 +5,7 @@ import { createAsset, getAssets, updateAsset } from '../../api/data/assetsData';
 const initialState = {
   name: '',
   category: '',
-  value: '',
+  value: 0,
   uid: '',
   type: 'asset',
 };
@@ -23,6 +23,10 @@ export default function AssetsForm({
     }
   }, [obj]);
 
+  const valueConverter = () => {
+    formInput.value *= 1;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -39,6 +43,7 @@ export default function AssetsForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    valueConverter();
 
     if (obj.firebaseKey) {
       updateAsset(obj.firebaseKey, formInput).then(() => {

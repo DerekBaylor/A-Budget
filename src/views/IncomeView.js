@@ -8,19 +8,19 @@ import IncomeChart from '../components/charts/IncomeChart';
 export default function IncomeView({ uid }) {
   const [incomeCards, setIncomeCards] = useState([]);
   const [editItem, setEditItem] = useState({});
-  const [chartData, setChartData] = useState({});
+  // const [chartData, setChartData] = useState({});
 
   useEffect(() => {
     getIncomes(uid).then(setIncomeCards);
-    getIncomes(uid).then(setChartData);
+    // getIncomes(uid).then(setChartData);
   }, []);
 
   return (
     <div className="income-view-container">
       <div>
-        <IncomeChart uid={uid} obj={chartData} />
+        {/* <IncomeChart uid={uid} obj={chartData} /> */}
+        <IncomeChart uid={uid} />
       </div>
-      <div>Income Legend</div>
       <hr />
       <div>
         <div className="income-card-container">
