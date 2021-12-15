@@ -9,8 +9,7 @@ import {
 const initialState = {
   name: '',
   category: '',
-  value: '',
-  freq: '0',
+  value: 0,
   recurring: false,
   uid: '',
   type: 'expense',
@@ -32,6 +31,10 @@ export default function ExpensesForm({
     }
   }, [obj]);
 
+  const valueConverter = () => {
+    formInput.value *= 1;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -48,6 +51,7 @@ export default function ExpensesForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    valueConverter();
 
     if (obj.firebaseKey) {
       updateExpense(obj.firebaseKey, formInput).then(() => {
@@ -106,7 +110,7 @@ export default function ExpensesForm({
         </div>
         <div>
           <label className="form-label">
-            <span className="form-text">Expense Amount: </span>
+            <span className="form-text">Monthly Amount: </span>
             <input
               className="form-input"
               id="value"
@@ -121,23 +125,6 @@ export default function ExpensesForm({
           </label>
         </div>
         <div>
-          <label className="form-label">
-            <span className="form-text">Payment Frequency: </span>
-            <select
-              className="form-input"
-              id="freq"
-              name="freq"
-              onChange={handleChange}
-              required
-              value={formInput.freq}
-            >
-              <option value="0">Choose Frequency</option>
-              <option value="1">Once Per Month</option>
-              <option value="2">Twice Per Month</option>
-              <option value="3">Three Times Per Month</option>
-              <option value="4">Four Times Per Month</option>
-            </select>
-          </label>
           <div>
             <div>
               <div className="form-check">

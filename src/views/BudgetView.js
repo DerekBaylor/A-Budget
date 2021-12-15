@@ -15,28 +15,33 @@ export default function BudgetView({ uid }) {
   const [assetCards, setAssetCards] = useState([]);
   const [goalCards, setGoaleCards] = useState([]);
   const [incTotal, setIncTotal] = useState(0);
+  const [expTotal, setExpTotal] = useState(0);
+  const [astTotal, setAstTotal] = useState(0);
 
   useEffect(() => {
     getIncomes(uid).then((incomeArray) => {
       setIncomeCards(incomeArray);
     });
-    // .then(() => {
-    //   console.warn(incomeCards);
-    //   const [...incomeCount] = incomeCards.map((card) => card.income);
-    //   const totalIncome = incomeCount.reduce((a, b) => a + b, 0);
-    //   console.warn(totalIncome);
-    //   setIncTotal(totalIncome);
-    // });
-    getExpenses(uid).then(setExpenseCards);
-    getAssets(uid).then(setAssetCards);
+    getExpenses(uid).then((expArray) => {
+      setExpenseCards(expArray);
+    });
+
+    getAssets(uid).then((astArray) => {
+      setAssetCards(astArray);
+    });
     getGoals(uid).then(setGoaleCards);
   }, []);
 
   useEffect(() => {
-    // console.warn('2', incomeCards);
     const [...incomeCount] = incomeCards.map((card) => card.income);
     const totalIncome = incomeCount.reduce((a, b) => a + b, 0);
     setIncTotal(totalIncome);
+    const [...expCount] = expenseCards.map((card) => card.value);
+    const totalExpenses = expCount.reduce((a, b) => a + b, 0);
+    setExpTotal(totalExpenses);
+    const [...astCount] = assetCards.map((card) => card.value);
+    const totalAssets = astCount.reduce((a, b) => a + b, 0);
+    setAstTotal(totalAssets);
   });
 
   return (
@@ -54,7 +59,7 @@ export default function BudgetView({ uid }) {
             <BvIncomeCard key={card.firebaseKey} card={card} />
           ))}
           <div className="total-value">
-            <h3 id="totalIncomes">Total Income: $ {incTotal}</h3>
+            <h3 id="totalIncomes">Total Income: ${incTotal}</h3>
           </div>
         </div>
         <hr />
@@ -64,8 +69,7 @@ export default function BudgetView({ uid }) {
             <BvExpensesCard key={card.firebaseKey} card={card} />
           ))}
           <div className="total-value">
-            <h3>Total Expenses:</h3>
-            <h3>$1</h3>
+            <h3>Total Expenses: ${expTotal}</h3>
           </div>
         </div>
         <hr />
@@ -75,8 +79,7 @@ export default function BudgetView({ uid }) {
             <BvAssetsCard key={card.firebaseKey} card={card} />
           ))}
           <div className="total-value">
-            <h3>Total Assets:</h3>
-            <h3>$1</h3>
+            <h3>Total Assets: ${astTotal}</h3>
           </div>
         </div>
         <hr />
@@ -85,10 +88,6 @@ export default function BudgetView({ uid }) {
           {goalCards.map((card) => (
             <BvGoalsCard key={card.firebaseKey} card={card} />
           ))}
-          <div className="total-value">
-            <h3>Total Goals:</h3>
-            <h3>$1</h3>
-          </div>
         </div>
       </div>
     </div>

@@ -28,16 +28,10 @@ export default function IncomeCard({
             <div className="card-value">
               <h5>${card.income}</h5>
             </div>
-            <div className="card-value">
-              <h5>{card.totValue}</h5>
-            </div>
           </div>
           <div className="card-info">
             <div className="card-text">
               <span>{card.category}</span>
-            </div>
-            <div className="card-text">
-              <span>{card.freq}x/month</span>
             </div>
             <div className="card-text">
               <span>Recurring: {card.recurring}</span>
