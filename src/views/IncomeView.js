@@ -15,7 +15,7 @@ export default function IncomeView({ uid }) {
   const [incomeCards, setIncomeCards] = useState([]);
   const [editItem, setEditItem] = useState({});
   const [chartLabels, setChartLabels] = useState([]);
-  // const [chartValues, setChartValues] = useState([]);
+  const [chartValues, setChartValues] = useState([]);
 
   useEffect(() => {
     getIncomes(uid).then((incomeArray) => {
@@ -24,30 +24,25 @@ export default function IncomeView({ uid }) {
   }, []);
 
   useEffect(() => {
-    const [...cLabels] = incomeCards.map((card) => card.category);
-    const thing2 = cLabels.valueOf;
-    console.warn('a2', thing2);
+    const cLabels = incomeCards.map((card) => card.category);
     setChartLabels(cLabels);
-    // const [...cValues] = incomeCards.map((card) => card.income);
-    // const thing3 = cValues.valueOf;
-    // setChartValues(thing3);
+    const cValues = incomeCards.map((card) => card.income);
+    setChartValues(cValues);
   }, []);
 
-  console.warn('a3', chartLabels);
-  // console.warn('a4', chartValues);
+  console.warn('labels', chartLabels);
+  console.warn('values', chartValues);
   return (
     <div className="income-view-container">
       <div style={{ width: '20rem' }}>
         <Doughnut
-          // datasetIdKey="id"
           data={{
             labels: ['Jun', 'Jul', 'Aug'],
             // labels: chartLabels,
             datasets: [
               {
-                id: 1,
-                label: '',
                 data: [5, 6, 7],
+                // data: chartValues,
               },
             ],
           }}
