@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
@@ -15,22 +16,58 @@ export default function IncomeView({ uid }) {
   const [editItem, setEditItem] = useState({});
   const [chartLabels, setChartLabels] = useState([]);
   const [chartValues, setChartValues] = useState([]);
+  const [chartData, setChartData] = useState({});
+
+  // useEffect(() => {
+  //   getIncomes(uid).then((incomeArray) => {
+  //     setIncomeCards(incomeArray);
+  //     const cLabels = incomeCards.map((card) => card.name);
+  //     setChartLabels(cLabels);
+  //     const cValues = incomeCards.map((card) => card.income);
+  //     setChartValues(cValues);
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   const cLabels = incomeCards.map((card) => card.name);
+  //   setChartLabels(cLabels);
+  //   const cValues = incomeCards.map((card) => card.income);
+  //   setChartValues(cValues);
+  // }, []);
+
+  // useEffect(() => {
+  //   getIncomes(uid).then((incomeArray) => {
+  //     setIncomeCards(incomeArray);
+  //   });
+  // }, []);
 
   useEffect(() => {
-    getIncomes(uid).then((incomeArray) => {
-      setIncomeCards(incomeArray);
-      // const cLabels = incomeCards.map((card) => card.category);
-      // setChartLabels(cLabels);
-      // const cValues = incomeCards.map((card) => card.income);
-      // setChartValues(cValues);
-    });
-  }, []);
-
-  useEffect(() => {
-    const cLabels = incomeCards.map((card) => card.name);
-    setChartLabels(cLabels);
-    const cValues = incomeCards.map((card) => card.income);
-    setChartValues(cValues);
+    const cData = async () => {
+      await getIncomes(uid).then((incomeArray) => {
+        setIncomeCards(incomeArray);
+        const cLabels = incomeCards.map((card) => card.name);
+        setChartLabels(cLabels);
+        const cValues = incomeCards.map((card) => card.income);
+        setChartValues(cValues);
+      });
+      setChartData({
+        labels: ['Jun', 'Jul', 'Aug'],
+        // labels: chartLabels,
+        datasets: [
+          {
+            data: [5, 6, 7],
+            // data: chartValues,
+            backgroundColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+            ],
+          },
+        ],
+      });
+    };
+    // cData();
+    console.warn('cData', cData);
   }, []);
 
   console.warn('labels', chartLabels);
@@ -38,7 +75,7 @@ export default function IncomeView({ uid }) {
   return (
     <div className="income-view-container">
       <div style={{ width: '20rem' }}>
-        <Doughnut
+        {/* <Doughnut
           data={{
             // labels: ['Jun', 'Jul', 'Aug'],
             labels: chartLabels,
@@ -54,7 +91,8 @@ export default function IncomeView({ uid }) {
               },
             ],
           }}
-        />
+        /> */}
+        <Doughnut data={chartData} />
       </div>
       <hr />
       <div>
