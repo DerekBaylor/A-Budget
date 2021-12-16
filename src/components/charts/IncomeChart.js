@@ -9,42 +9,46 @@ import { getIncomes } from '../../api/data/incomeData';
 Chart.register(ArcElement, Title, Legend, Tooltip);
 
 export default function IncomeChart({ uid }) {
-  const [chartData, setChartData] = useState({});
+  const [chartData, setChartData] = useState([]);
+  const [chartLabels, setChartLabels] = useState([]);
 
   useEffect(() => {
     getIncomes(uid).then((dataArray) => {
       setChartData(dataArray);
     });
   }, []);
+  console.warn('1', chartData.map);
 
-  // useEffect(() => {
-  //   const chart = () => {
-  //     const chartCat = [];
-  //     const chartVal = [];
-  //     getIncomes(uid)
-  //       .then((response) => {
-  //         console.warn('res', response);
+  useEffect(() => {
+    const cLabels = chartData.map();
+    setChartLabels(cLabels);
+  });
 
-  //         for (const dataObj of response.data) {
-  //           chartCat.push(dataObj.categories);
-  //           chartVal.push(dataObj.income);
-  //         }
-  //         setChartData({
-  //           labels: chartCat,
-  //           datasets: [{
-  //             label: 'Income Breakdown',
-  //             data: chartVal,
-  //             backgroundColor: ['red', 'blue', 'green'],
-  //           }],
-  //         });
-  //       });
-  //   };
-  // }, []);
-  console.warn(chartData);
+  console.warn('2', chartLabels);
 
   return (
-    <div style={{ width: '20rem' }}>
-      <Doughnut data={chartData} />
+    <div>
+      <div style={{ width: '20rem' }}>
+        <Doughnut
+          // datasetIdKey="id"
+          data={{
+            labels: ['Jun', 'Jul', 'Aug'],
+            datasets: [
+              {
+                id: 1,
+                label: '',
+                data: [5, 6, 7],
+              },
+              {
+                id: 2,
+                label: '',
+                data: [3, 2, 1],
+              },
+            ],
+          }}
+        />
+      </div>
+      <h1>Chart</h1>
     </div>
   );
 }

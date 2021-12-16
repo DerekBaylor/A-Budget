@@ -1,25 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Doughnut } from 'react-chartjs-2';
+import {
+  Chart, ArcElement, Legend, Tooltip, Title,
+} from 'chart.js';
 import { getIncomes } from '../api/data/incomeData';
 import IncomeCard from '../components/cards/IncomeCard';
 import IncomeForm from '../components/forms/IncomeForm';
-import IncomeChart from '../components/charts/IncomeChart';
+
+Chart.register(ArcElement, Title, Legend, Tooltip);
 
 export default function IncomeView({ uid }) {
   const [incomeCards, setIncomeCards] = useState([]);
   const [editItem, setEditItem] = useState({});
-  // const [chartData, setChartData] = useState({});
+  const [chartLabels, setChartLabels] = useState([]);
+  const [chartValues, setChartValues] = useState([]);
 
   useEffect(() => {
-    getIncomes(uid).then(setIncomeCards);
-    // getIncomes(uid).then(setChartData);
+    getIncomes(uid).then((incomeArray) => {
+      setIncomeCards(incomeArray);
+      // const cLabels = incomeCards.map((card) => card.category);
+      // setChartLabels(cLabels);
+      // const cValues = incomeCards.map((card) => card.income);
+      // setChartValues(cValues);
+    });
   }, []);
 
+  useEffect(() => {
+    const cLabels = incomeCards.map((card) => card.name);
+    setChartLabels(cLabels);
+    const cValues = incomeCards.map((card) => card.income);
+    setChartValues(cValues);
+  }, []);
+
+  console.warn('labels', chartLabels);
+  console.warn('values', chartValues);
   return (
     <div className="income-view-container">
-      <div>
-        {/* <IncomeChart uid={uid} obj={chartData} /> */}
-        <IncomeChart uid={uid} />
+      <div style={{ width: '20rem' }}>
+        <Doughnut
+          data={{
+            // labels: ['Jun', 'Jul', 'Aug'],
+            labels: chartLabels,
+            datasets: [
+              {
+                // data: [5, 6, 7],
+                data: chartValues,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                ],
+              },
+            ],
+          }}
+        />
       </div>
       <hr />
       <div>
