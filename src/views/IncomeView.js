@@ -19,11 +19,15 @@ export default function IncomeView({ uid }) {
   useEffect(() => {
     getIncomes(uid).then((incomeArray) => {
       setIncomeCards(incomeArray);
+      // const cLabels = incomeCards.map((card) => card.category);
+      // setChartLabels(cLabels);
+      // const cValues = incomeCards.map((card) => card.income);
+      // setChartValues(cValues);
     });
   }, []);
 
   useEffect(() => {
-    const cLabels = incomeCards.map((card) => card.category);
+    const cLabels = incomeCards.map((card) => card.name);
     setChartLabels(cLabels);
     const cValues = incomeCards.map((card) => card.income);
     setChartValues(cValues);
@@ -36,12 +40,17 @@ export default function IncomeView({ uid }) {
       <div style={{ width: '20rem' }}>
         <Doughnut
           data={{
-            labels: ['Jun', 'Jul', 'Aug'],
-            // labels: chartLabels,
+            // labels: ['Jun', 'Jul', 'Aug'],
+            labels: chartLabels,
             datasets: [
               {
-                data: [5, 6, 7],
-                // data: chartValues,
+                // data: [5, 6, 7],
+                data: chartValues,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                ],
               },
             ],
           }}
