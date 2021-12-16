@@ -7,7 +7,6 @@ import {
 import { getIncomes } from '../api/data/incomeData';
 import IncomeCard from '../components/cards/IncomeCard';
 import IncomeForm from '../components/forms/IncomeForm';
-// import IncomeChart from '../components/charts/IncomeChart';
 
 Chart.register(ArcElement, Title, Legend, Tooltip);
 
