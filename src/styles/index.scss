@@ -289,11 +289,15 @@ body {
       .card-btn-group{
         display: flex;
         justify-content: right;
-        .del-btn{
-          background: none;
-          text-decoration: underline;
-          color: red;
-          font-weight: 700;
+        .card-btn-group{
+          display: flex;
+          justify-content: right;
+          .del-btn{
+            background: none;
+            text-decoration: underline;
+            color: red;
+            font-weight: 700;
+          }
         }
       }
     }
@@ -357,11 +361,15 @@ body {
       .card-btn-group{
         display: flex;
         justify-content: right;
-        .del-btn{
-          background: none;
-          text-decoration: underline;
-          color: red;
-          font-weight: 700;
+        .card-btn-group{
+          display: flex;
+          justify-content: right;
+          .del-btn{
+            background: none;
+            text-decoration: underline;
+            color: red;
+            font-weight: 700;
+          }
         }
       }
     }

@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export default function GoalsForm({
-  obj, setEditItem, uid, setGoalCards,
+  obj, setEditItem, uid, setGoalCards, setChartLabels, setChartValues,
 }) {
   const [formInput, setFormInput] = useState(initialState);
 
@@ -23,6 +23,11 @@ export default function GoalsForm({
       setFormInput({ ...initialState });
     }
   }, [obj]);
+
+  const valueConverter = () => {
+    formInput.currentValue *= 1;
+    formInput.goalTotal *= 1;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,15 +45,28 @@ export default function GoalsForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    valueConverter();
 
     if (obj.firebaseKey) {
       updateGoal(obj.firebaseKey, formInput).then(() => {
-        getGoals(uid).then(setGoalCards);
+        getGoals(uid).then((goalsArray) => {
+          setGoalCards(goalsArray);
+          const cLabels = goalsArray.map((card) => card.name);
+          setChartLabels(cLabels);
+          const cValues = goalsArray.map((card) => card.goalTotal);
+          setChartValues(cValues);
+        });
         resetForm();
       });
     } else {
       createGoal({ ...formInput, uid }).then(() => {
-        getGoals(uid).then(setGoalCards);
+        getGoals(uid).then((goalsArray) => {
+          setGoalCards(goalsArray);
+          const cLabels = goalsArray.map((card) => card.name);
+          setChartLabels(cLabels);
+          const cValues = goalsArray.map((card) => card.goalTotal);
+          setChartValues(cValues);
+        });
         resetForm();
       });
     }
@@ -134,6 +152,13 @@ export default function GoalsForm({
           >
             Submit
           </button>
+          <button
+            className="btn btn-primary form-btn btn-warning"
+            type="submit"
+            onClick={resetForm}
+          >
+            Clear
+          </button>
         </div>
       </form>
     </div>
@@ -145,6 +170,8 @@ GoalsForm.propTypes = {
   setEditItem: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
   setGoalCards: PropTypes.func.isRequired,
+  setChartValues: PropTypes.func.isRequired,
+  setChartLabels: PropTypes.func.isRequired,
 };
 
 GoalsForm.defaultProps = {
