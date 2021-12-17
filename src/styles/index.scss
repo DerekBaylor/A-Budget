@@ -110,6 +110,10 @@ body {
         display: flex;
         justify-content: center;
         margin-top: 1rem;
+        .btn{
+          margin: .2rem;
+          font-weight: bold;
+        }
       }
     }
     .income-card-container{
@@ -178,6 +182,10 @@ body {
       display: flex;
       justify-content: center;
       margin-top: 1rem;
+      .btn{
+        margin: .2rem;
+        font-weight: bold;
+      }
     }
   }
   .expense-card-container{

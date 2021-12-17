@@ -9,14 +9,18 @@ import {
 const initialState = {
   name: '',
   category: '',
-  income: 0,
-  freq: 0,
+  income: '',
   recurring: '',
   uid: '',
 };
 
 export default function IncomeForm({
-  obj, setEditItem, uid, setIncomeCards,
+  obj,
+  setEditItem,
+  uid,
+  setIncomeCards,
+  setChartLabels,
+  setChartValues,
 }) {
   const [formInput, setFormInput] = useState(initialState);
 
@@ -52,16 +56,28 @@ export default function IncomeForm({
 
     if (obj.firebaseKey) {
       updateIncome(obj.firebaseKey, formInput).then(() => {
-        getIncomes(uid).then(setIncomeCards);
-        resetForm();
+        getIncomes(uid).then((incomeArray) => {
+          setIncomeCards(incomeArray);
+          const cLabels = incomeArray.map((card) => card.name);
+          setChartLabels(cLabels);
+          const cValues = incomeArray.map((card) => card.income);
+          setChartValues(cValues);
+          resetForm();
+        });
       });
     } else {
       createIncome({
         ...formInput,
         uid,
       }).then(() => {
-        getIncomes(uid).then(setIncomeCards);
-        resetForm();
+        getIncomes(uid).then((incomeArray) => {
+          setIncomeCards(incomeArray);
+          const cLabels = incomeArray.map((card) => card.name);
+          setChartLabels(cLabels);
+          const cValues = incomeArray.map((card) => card.income);
+          setChartValues(cValues);
+          resetForm();
+        });
       });
     }
   };
@@ -148,6 +164,13 @@ export default function IncomeForm({
             >
               Submit
             </button>
+            <button
+              className="btn btn-primary form-btn btn-warning"
+              type="submit"
+              onClick={resetForm}
+            >
+              Clear
+            </button>
           </div>
         </div>
       </form>
@@ -160,6 +183,8 @@ IncomeForm.propTypes = {
   setEditItem: PropTypes.func.isRequired,
   uid: PropTypes.string.isRequired,
   setIncomeCards: PropTypes.func.isRequired,
+  setChartValues: PropTypes.func.isRequired,
+  setChartLabels: PropTypes.func.isRequired,
 };
 
 IncomeForm.defaultProps = {

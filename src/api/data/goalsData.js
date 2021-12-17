@@ -10,15 +10,6 @@ const getGoals = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleGoal = (firebaseKey) => new Promise((resolve, reject) => {
-  axios
-    .get(`${baseURL}/goals/${firebaseKey}.json`)
-    .then((response) => {
-      resolve(response.data);
-    })
-    .catch(reject);
-});
-
 const deleteGoal = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios
     .delete(`${baseURL}/goals/${firebaseKey}.json`)
@@ -50,5 +41,5 @@ const createGoal = (obj, uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getGoals, getSingleGoal, deleteGoal, updateGoal, createGoal,
+  getGoals, deleteGoal, updateGoal, createGoal,
 };

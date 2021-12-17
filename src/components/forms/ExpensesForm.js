@@ -9,7 +9,7 @@ import {
 const initialState = {
   name: '',
   category: '',
-  value: 0,
+  value: '',
   recurring: false,
   uid: '',
   type: 'expense',
@@ -20,6 +20,8 @@ export default function ExpensesForm({
   setEditItem,
   uid,
   setExpenseCards,
+  setChartLabels,
+  setChartValues,
 }) {
   const [formInput, setFormInput] = useState(initialState);
 
@@ -55,12 +57,24 @@ export default function ExpensesForm({
 
     if (obj.firebaseKey) {
       updateExpense(obj.firebaseKey, formInput).then(() => {
-        getExpenses(uid).then(setExpenseCards);
+        getExpenses(uid).then((expenseArray) => {
+          setExpenseCards(expenseArray);
+          const cLabels = expenseArray.map((card) => card.name);
+          setChartLabels(cLabels);
+          const cValues = expenseArray.map((card) => card.value);
+          setChartValues(cValues);
+        });
         resetForm();
       });
     } else {
       createExpense({ ...formInput, uid }).then(() => {
-        getExpenses(uid).then(setExpenseCards);
+        getExpenses(uid).then((expenseArray) => {
+          setExpenseCards(expenseArray);
+          const cLabels = expenseArray.map((card) => card.name);
+          setChartLabels(cLabels);
+          const cValues = expenseArray.map((card) => card.value);
+          setChartValues(cValues);
+        });
         resetForm();
       });
     }
@@ -154,6 +168,13 @@ export default function ExpensesForm({
             >
               Submit
             </button>
+            <button
+              className="btn btn-primary form-btn btn-warning"
+              type="submit"
+              onClick={resetForm}
+            >
+              Clear
+            </button>
           </div>
         </div>
       </form>
@@ -166,6 +187,8 @@ ExpensesForm.propTypes = {
   setEditItem: PropTypes.func.isRequired,
   uid: PropTypes.string,
   setExpenseCards: PropTypes.func.isRequired,
+  setChartValues: PropTypes.func.isRequired,
+  setChartLabels: PropTypes.func.isRequired,
 };
 
 ExpensesForm.defaultProps = {

@@ -10,15 +10,6 @@ const getAssets = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleAsset = (firebaseKey) => new Promise((resolve, reject) => {
-  axios
-    .get(`${baseURL}/assets/${firebaseKey}.json`)
-    .then((response) => {
-      resolve(response.data);
-    })
-    .catch(reject);
-});
-
 const deleteAsset = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios
     .delete(`${baseURL}/assets/${firebaseKey}.json`)
@@ -50,5 +41,5 @@ const createAsset = (obj, uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getAssets, getSingleAsset, deleteAsset, updateAsset, createAsset,
+  getAssets, deleteAsset, updateAsset, createAsset,
 };

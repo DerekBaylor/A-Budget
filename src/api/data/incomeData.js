@@ -10,15 +10,6 @@ const getIncomes = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleIncome = (firebaseKey) => new Promise((resolve, reject) => {
-  axios
-    .get(`${baseURL}/income/${firebaseKey}.json`)
-    .then((response) => {
-      resolve(response.data);
-    })
-    .catch(reject);
-});
-
 const deleteIncome = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios
     .delete(`${baseURL}/income/${firebaseKey}.json`)
@@ -50,9 +41,5 @@ const createIncome = (obj, uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getIncomes,
-  getSingleIncome,
-  deleteIncome,
-  updateIncome,
-  createIncome,
+  getIncomes, deleteIncome, updateIncome, createIncome,
 };

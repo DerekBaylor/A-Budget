@@ -10,15 +10,6 @@ const getExpenses = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleExpense = (firebaseKey) => new Promise((resolve, reject) => {
-  axios
-    .get(`${baseURL}/expenses/${firebaseKey}.json`)
-    .then((response) => {
-      resolve(response.data);
-    })
-    .catch(reject);
-});
-
 const deleteExpense = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios
     .delete(`${baseURL}/expenses/${firebaseKey}.json`)
@@ -50,9 +41,5 @@ const createExpense = (obj, uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getExpenses,
-  getSingleExpense,
-  deleteExpense,
-  updateExpense,
-  createExpense,
+  getExpenses, deleteExpense, updateExpense, createExpense,
 };
