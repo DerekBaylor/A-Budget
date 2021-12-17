@@ -16,12 +16,7 @@ const initialState = {
 };
 
 export default function ExpensesForm({
-  obj,
-  setEditItem,
-  uid,
-  setExpenseCards,
-  setChartLabels,
-  setChartValues,
+  obj, setEditItem, uid, setExpenseCards, setChartLabels, setChartValues,
 }) {
   const [formInput, setFormInput] = useState(initialState);
 

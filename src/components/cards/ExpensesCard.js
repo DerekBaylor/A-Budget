@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import { deleteExpense, getExpenses } from '../../api/data/expensesData';
 
 export default function ExpensesCard({
-  card,
-  uid,
-  setEditItem,
-  setExpenseCards,
-  setChartLabels,
-  setChartValues,
+  card, uid, setEditItem, setExpenseCards, setChartLabels, setChartValues,
 }) {
   const chartRefresh = () => {
     getExpenses(uid).then((expenseArray) => {

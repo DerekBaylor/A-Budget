@@ -9,6 +9,7 @@ import ExpensesCard from '../components/cards/ExpensesCard';
 import ExpensesForm from '../components/forms/ExpensesForm';
 
 Chart.register(ArcElement, Title, Legend, Tooltip);
+
 export default function ExpensesView({ uid }) {
   const [expenseCards, setExpenseCards] = useState([]);
   const [editItem, setEditItem] = useState({});
