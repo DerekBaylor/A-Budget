@@ -3,13 +3,29 @@ import PropTypes from 'prop-types';
 import { deleteIncome, getIncomes } from '../../api/data/incomeData';
 
 export default function IncomeCard({
-  card, uid, setEditItem, setIncomeCards,
+  card,
+  uid,
+  setEditItem,
+  setIncomeCards,
+  setChartLabels,
+  setChartValues,
 }) {
+  const chartRefresh = () => {
+    getIncomes(uid).then((incomeArray) => {
+      setIncomeCards(incomeArray);
+      const cLabels = incomeArray.map((crd) => crd.name);
+      setChartLabels(cLabels);
+      const cValues = incomeArray.map((crd) => crd.income);
+      setChartValues(cValues);
+    });
+  };
+
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteIncome(card.firebaseKey).then(() => {
         getIncomes(uid).then(setIncomeCards);
       });
+      chartRefresh();
     }
   };
 
@@ -57,4 +73,6 @@ IncomeCard.propTypes = {
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
   setIncomeCards: PropTypes.func.isRequired,
+  setChartValues: PropTypes.func.isRequired,
+  setChartLabels: PropTypes.func.isRequired,
 };

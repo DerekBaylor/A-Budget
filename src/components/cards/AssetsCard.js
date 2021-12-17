@@ -3,13 +3,29 @@ import PropTypes from 'prop-types';
 import { deleteAsset, getAssets } from '../../api/data/assetsData';
 
 export default function AssetsCard({
-  card, uid, setEditItem, setAssetCards,
+  card,
+  uid,
+  setEditItem,
+  setAssetCards,
+  setChartLabels,
+  setChartValues,
 }) {
+  const chartRefresh = () => {
+    getAssets(uid).then((assetArray) => {
+      setAssetCards(assetArray);
+      const cLabels = assetArray.map((crd) => crd.name);
+      setChartLabels(cLabels);
+      const cValues = assetArray.map((crd) => crd.value);
+      setChartValues(cValues);
+    });
+  };
+
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteAsset(card.firebaseKey).then(() => {
         getAssets(uid).then(setAssetCards);
       });
+      chartRefresh();
     }
   };
 
@@ -54,4 +70,6 @@ AssetsCard.propTypes = {
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
   setAssetCards: PropTypes.func.isRequired,
+  setChartValues: PropTypes.func.isRequired,
+  setChartLabels: PropTypes.func.isRequired,
 };

@@ -7,12 +7,25 @@ export default function ExpensesCard({
   uid,
   setEditItem,
   setExpenseCards,
+  setChartLabels,
+  setChartValues,
 }) {
+  const chartRefresh = () => {
+    getExpenses(uid).then((expenseArray) => {
+      setExpenseCards(expenseArray);
+      const cLabels = expenseArray.map((crd) => crd.name);
+      setChartLabels(cLabels);
+      const cValues = expenseArray.map((crd) => crd.value);
+      setChartValues(cValues);
+    });
+  };
+
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteExpense(card.firebaseKey).then(() => {
         getExpenses(uid).then(setExpenseCards);
       });
+      chartRefresh();
     }
   };
 
@@ -63,4 +76,6 @@ ExpensesCard.propTypes = {
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
   setExpenseCards: PropTypes.func.isRequired,
+  setChartValues: PropTypes.func.isRequired,
+  setChartLabels: PropTypes.func.isRequired,
 };

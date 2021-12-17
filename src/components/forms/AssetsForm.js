@@ -5,13 +5,18 @@ import { createAsset, getAssets, updateAsset } from '../../api/data/assetsData';
 const initialState = {
   name: '',
   category: '',
-  value: 0,
+  value: '',
   uid: '',
   type: 'asset',
 };
 
 export default function AssetsForm({
-  obj, setEditItem, uid, setAssetCards,
+  obj,
+  setEditItem,
+  uid,
+  setAssetCards,
+  setChartLabels,
+  setChartValues,
 }) {
   const [formInput, setFormInput] = useState(initialState);
 
@@ -47,12 +52,24 @@ export default function AssetsForm({
 
     if (obj.firebaseKey) {
       updateAsset(obj.firebaseKey, formInput).then(() => {
-        getAssets(uid).then(setAssetCards);
+        getAssets(uid).then((assetArray) => {
+          setAssetCards(assetArray);
+          const cLabels = assetArray.map((card) => card.name);
+          setChartLabels(cLabels);
+          const cValues = assetArray.map((card) => card.value);
+          setChartValues(cValues);
+        });
         resetForm();
       });
     } else {
       createAsset({ ...formInput, uid }).then(() => {
-        getAssets(uid).then(setAssetCards);
+        getAssets(uid).then((assetArray) => {
+          setAssetCards(assetArray);
+          const cLabels = assetArray.map((card) => card.name);
+          setChartLabels(cLabels);
+          const cValues = assetArray.map((card) => card.value);
+          setChartValues(cValues);
+        });
         resetForm();
       });
     }
@@ -122,6 +139,13 @@ export default function AssetsForm({
           >
             Submit
           </button>
+          <button
+            className="btn btn-primary form-btn btn-warning"
+            type="submit"
+            onClick={resetForm}
+          >
+            Clear
+          </button>
         </div>
       </form>
     </div>
@@ -133,6 +157,8 @@ AssetsForm.propTypes = {
   uid: PropTypes.string.isRequired,
   setEditItem: PropTypes.func.isRequired,
   setAssetCards: PropTypes.func.isRequired,
+  setChartValues: PropTypes.func.isRequired,
+  setChartLabels: PropTypes.func.isRequired,
 };
 
 AssetsForm.defaultProps = {
