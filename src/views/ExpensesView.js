@@ -7,6 +7,7 @@ import {
 import { getExpenses } from '../api/data/expensesData';
 import ExpensesCard from '../components/cards/ExpensesCard';
 import ExpensesForm from '../components/forms/ExpensesForm';
+import colors from '../helpers/colors';
 
 Chart.register(ArcElement, Title, Legend, Tooltip);
 
@@ -21,25 +22,26 @@ export default function ExpensesView({ uid }) {
       setExpenseCards(expenseArray);
       const cLabels = expenseArray.map((card) => card.name);
       setChartLabels(cLabels);
+      console.warn('cLables', cLabels);
       const cValues = expenseArray.map((card) => card.value);
       setChartValues(cValues);
     });
   }, []);
 
   return (
-    <div className="expense-view-container">
+    <div className="view-container">
       <div style={{ width: '20rem' }}>
         <Doughnut
           data={{
+            title: {
+              display: true,
+              text: 'Title',
+            },
             labels: chartLabels,
             datasets: [
               {
                 data: chartValues,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                ],
+                backgroundColor: colors,
               },
             ],
           }}
@@ -47,7 +49,7 @@ export default function ExpensesView({ uid }) {
       </div>
       <hr />
       <div>
-        <div className="expense-card-container">
+        <div className="card-container">
           {expenseCards.map((card) => (
             <ExpensesCard
               key={card.firebaseKey}

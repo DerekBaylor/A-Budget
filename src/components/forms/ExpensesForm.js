@@ -10,13 +10,18 @@ const initialState = {
   name: '',
   category: '',
   value: '',
-  recurring: false,
+  recurring: '',
   uid: '',
   type: 'expense',
 };
 
 export default function ExpensesForm({
-  obj, setEditItem, uid, setExpenseCards, setChartLabels, setChartValues,
+  obj,
+  setEditItem,
+  uid,
+  setExpenseCards,
+  setChartLabels,
+  setChartValues,
 }) {
   const [formInput, setFormInput] = useState(initialState);
 
@@ -76,7 +81,7 @@ export default function ExpensesForm({
   };
 
   return (
-    <div className="expense-form-container">
+    <div className="form-container">
       <form className="expense-form">
         <div className="form-group">
           <label className="form-label">
@@ -105,7 +110,7 @@ export default function ExpensesForm({
               required
               placeholder="Choose Expense Category"
             >
-              <option value="Other">Choose Category</option>
+              <option value="">Choose Category</option>
               <option value="Housing">Housing</option>
               <option value="Utilities">Utilities</option>
               <option value="Vehicle">Vehicle</option>
@@ -147,7 +152,7 @@ export default function ExpensesForm({
                     required
                     value={formInput.recurring}
                   >
-                    <option value="false">Choose Option</option>
+                    <option value="">Choose Option</option>
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                   </select>

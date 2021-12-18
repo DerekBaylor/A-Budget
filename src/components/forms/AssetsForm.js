@@ -76,7 +76,7 @@ export default function AssetsForm({
   };
 
   return (
-    <div className="asset-form-container">
+    <div className="form-container">
       <form className="asset-form">
         <div className="form-group">
           <label className="form-label">
@@ -105,7 +105,7 @@ export default function AssetsForm({
               required
               placeholder="Choose Asset Category"
             >
-              <option value="Other">Choose Category</option>
+              <option value="">Choose Category</option>
               <option value="Retirement">Retirement</option>
               <option value="Savings">Savings</option>
               <option value="Collectibles">Collectibles</option>

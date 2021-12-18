@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { deleteExpense, getExpenses } from '../../api/data/expensesData';
 
 export default function ExpensesCard({
-  card, uid, setEditItem, setExpenseCards, setChartLabels, setChartValues,
+  card,
+  uid,
+  setEditItem,
+  setExpenseCards,
+  setChartLabels,
+  setChartValues,
 }) {
   const chartRefresh = () => {
     getExpenses(uid).then((expenseArray) => {
@@ -25,7 +30,7 @@ export default function ExpensesCard({
   };
 
   return (
-    <div className="card income-cards page-type-cards">
+    <div className="card page-cards page-type-cards">
       <div>
         <div className="card-body">
           <div className="card-data">
@@ -43,9 +48,6 @@ export default function ExpensesCard({
           <div className="card-info">
             <div className="card-text">
               <span>{card.category}</span>
-            </div>
-            <div className="card-text">
-              <span>{card.freq}x/month</span>
             </div>
             <div className="card-text">
               <span>Recurring: {card.recurring}</span>

@@ -83,7 +83,7 @@ export default function IncomeForm({
   };
 
   return (
-    <div className="income-form-container">
+    <div className="form-container">
       <form className="income-form">
         <div className="form-group">
           <label className="form-label">

@@ -3,15 +3,22 @@ import PropTypes from 'prop-types';
 import { deleteGoal, getGoals } from '../../api/data/goalsData';
 
 export default function GoalsCard({
-  card, uid, setEditItem, setGoalCards, setChartLabels, setChartValues,
+  card,
+  uid,
+  setEditItem,
+  setGoalCards,
+  setChartLabels,
+  setChartValues,
 }) {
   const chartRefresh = () => {
     getGoals(uid).then((goalsArray) => {
       setGoalCards(goalsArray);
       const cLabels = goalsArray.map((crd) => crd.name);
       setChartLabels(cLabels);
-      const cValues = goalsArray.map((crd) => crd.goalTotal);
-      setChartValues(cValues);
+      const cValues1 = goalsArray.map((crd) => crd.goalTotal);
+      const cValues2 = goalsArray.map((crd) => crd.currentValue);
+      const totalValue = cValues1.map((num, idx) => num - cValues2[idx]);
+      setChartValues(totalValue);
     });
   };
   const handleDelete = (method) => {
@@ -24,7 +31,7 @@ export default function GoalsCard({
   };
 
   return (
-    <div className="card goal-cards page-type-cards">
+    <div className="card page-cards page-type-cards">
       <div>
         <div className="card-body">
           <div className="card-data">
@@ -54,7 +61,7 @@ export default function GoalsCard({
             type="button"
             onClick={() => handleDelete('delete')}
           >
-            Delete Income
+            Complete Goal
           </button>
         </div>
       </div>

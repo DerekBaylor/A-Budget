@@ -12,7 +12,12 @@ const initialState = {
 };
 
 export default function GoalsForm({
-  obj, setEditItem, uid, setGoalCards, setChartLabels, setChartValues,
+  obj,
+  setEditItem,
+  uid,
+  setGoalCards,
+  setChartLabels,
+  setChartValues,
 }) {
   const [formInput, setFormInput] = useState(initialState);
 
@@ -53,8 +58,10 @@ export default function GoalsForm({
           setGoalCards(goalsArray);
           const cLabels = goalsArray.map((card) => card.name);
           setChartLabels(cLabels);
-          const cValues = goalsArray.map((card) => card.goalTotal);
-          setChartValues(cValues);
+          const cValues1 = goalsArray.map((card) => card.goalTotal);
+          const cValues2 = goalsArray.map((card) => card.currentValue);
+          const totalValue = cValues1.map((num, idx) => num - cValues2[idx]);
+          setChartValues(totalValue);
         });
         resetForm();
       });
@@ -64,8 +71,10 @@ export default function GoalsForm({
           setGoalCards(goalsArray);
           const cLabels = goalsArray.map((card) => card.name);
           setChartLabels(cLabels);
-          const cValues = goalsArray.map((card) => card.goalTotal);
-          setChartValues(cValues);
+          const cValues1 = goalsArray.map((card) => card.goalTotal);
+          const cValues2 = goalsArray.map((card) => card.currentValue);
+          const totalValue = cValues1.map((num, idx) => num - cValues2[idx]);
+          setChartValues(totalValue);
         });
         resetForm();
       });
@@ -73,7 +82,7 @@ export default function GoalsForm({
   };
 
   return (
-    <div className="goal-form-container">
+    <div className="form-container">
       <form className="goal-form">
         <div className="form-group">
           <label className="form-label">
@@ -102,7 +111,7 @@ export default function GoalsForm({
               required
               placeholder="Choose Goal Category"
             >
-              <option value="Other">Choose Category</option>
+              <option value="">Choose Category</option>
               <option value="Retirement">Retirement</option>
               <option value="Savings">Savings</option>
               <option value="Debt Payoff">Debt Payoff</option>

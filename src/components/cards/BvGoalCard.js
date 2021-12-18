@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function BvGoalsCard({ card }) {
   return (
-    <div className="card goal-cards page-type-cards">
+    <div className="card page-cards page-type-cards">
       <div>
         <div className="card-body">
           <div className="card-data">
