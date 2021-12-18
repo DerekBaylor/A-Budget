@@ -10,23 +10,19 @@ export default function GoalsCard({
   setChartLabels,
   setChartValues,
 }) {
-  const chartRefresh = () => {
-    getGoals(uid).then((goalsArray) => {
-      setGoalCards(goalsArray);
-      const cLabels = goalsArray.map((crd) => crd.name);
-      setChartLabels(cLabels);
-      const cValues1 = goalsArray.map((crd) => crd.goalTotal);
-      const cValues2 = goalsArray.map((crd) => crd.currentValue);
-      const totalValue = cValues1.map((num, idx) => num - cValues2[idx]);
-      setChartValues(totalValue);
-    });
-  };
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteGoal(card.firebaseKey).then(() => {
-        getGoals(uid).then(setGoalCards);
+        getGoals(uid).then((goalsArray) => {
+          setGoalCards(goalsArray);
+          const cLabels = goalsArray.map((crd) => crd.name);
+          setChartLabels(cLabels);
+          const cValues1 = goalsArray.map((crd) => crd.goalTotal);
+          const cValues2 = goalsArray.map((crd) => crd.currentValue);
+          const totalValue = cValues1.map((num, idx) => num - cValues2[idx]);
+          setChartValues(totalValue);
+        });
       });
-      chartRefresh();
     }
   };
 

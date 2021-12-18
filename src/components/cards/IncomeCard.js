@@ -10,22 +10,17 @@ export default function IncomeCard({
   setChartLabels,
   setChartValues,
 }) {
-  const chartRefresh = () => {
-    getIncomes(uid).then((incomeArray) => {
-      setIncomeCards(incomeArray);
-      const cLabels = incomeArray.map((crd) => crd.name);
-      setChartLabels(cLabels);
-      const cValues = incomeArray.map((crd) => crd.income);
-      setChartValues(cValues);
-    });
-  };
-
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteIncome(card.firebaseKey).then(() => {
-        getIncomes(uid).then(setIncomeCards);
+        getIncomes(uid).then((incomeArray) => {
+          setIncomeCards(incomeArray);
+          const cLabels = incomeArray.map((crd) => crd.name);
+          setChartLabels(cLabels);
+          const cValues = incomeArray.map((crd) => crd.income);
+          setChartValues(cValues);
+        });
       });
-      chartRefresh();
     }
   };
 
