@@ -7,6 +7,7 @@ import {
 import { getIncomes } from '../api/data/incomeData';
 import IncomeCard from '../components/cards/IncomeCard';
 import IncomeForm from '../components/forms/IncomeForm';
+import colors from '../helpers/colors';
 
 Chart.register(ArcElement, Title, Legend, Tooltip);
 
@@ -27,7 +28,7 @@ export default function IncomeView({ uid }) {
   }, []);
 
   return (
-    <div className="income-view-container">
+    <div className="view-container">
       <div style={{ width: '20rem' }}>
         <Doughnut
           data={{
@@ -35,11 +36,7 @@ export default function IncomeView({ uid }) {
             datasets: [
               {
                 data: chartValues,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                ],
+                backgroundColor: colors,
               },
             ],
           }}
@@ -47,7 +44,7 @@ export default function IncomeView({ uid }) {
       </div>
       <hr />
       <div>
-        <div className="income-card-container">
+        <div className="card-container">
           {incomeCards.map((card) => (
             <IncomeCard
               key={card.firebaseKey}

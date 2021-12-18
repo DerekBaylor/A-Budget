@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Doughnut } from 'react-chartjs-2';
+import {
+  Chart, ArcElement, Legend, Tooltip, Title,
+} from 'chart.js';
 import { getIncomes } from '../api/data/incomeData';
 import { getExpenses } from '../api/data/expensesData';
 import { getAssets } from '../api/data/assetsData';
@@ -8,6 +12,9 @@ import BvIncomeCard from '../components/cards/BvIncomeCard';
 import BvExpensesCard from '../components/cards/BvExpenseCard';
 import BvAssetsCard from '../components/cards/BvAssetsCard';
 import BvGoalsCard from '../components/cards/BvGoalCard';
+import colors from '../helpers/colors';
+
+Chart.register(ArcElement, Title, Legend, Tooltip);
 
 export default function BudgetView({ uid }) {
   const [incomeCards, setIncomeCards] = useState([]);
@@ -45,16 +52,25 @@ export default function BudgetView({ uid }) {
   });
 
   return (
-    <div className="budget-view-container">
-      <div className="graph-container">
-        <h1>Monthly Budget Graph</h1>
-        <h2>Monthly Budget Legend</h2>
+    <div className="view-container">
+      <div style={{ width: '20rem' }}>
+        <Doughnut
+          data={{
+            labels: ['Total Income', 'Total Expenses', 'Total Assets'],
+            datasets: [
+              {
+                data: [incTotal, expTotal, astTotal],
+                backgroundColor: colors,
+              },
+            ],
+          }}
+        />
       </div>
       <hr />
       <div className="budget-breakdown-container">
         <h1>Category Breakdown</h1>
-        <div className="budget-card-container">
-          <h2 className="budget-income-cards">Incomes</h2>
+        <div className="card-container">
+          <h2>Incomes</h2>
           {incomeCards?.map((card) => (
             <BvIncomeCard key={card.firebaseKey} card={card} />
           ))}
@@ -63,8 +79,8 @@ export default function BudgetView({ uid }) {
           </div>
         </div>
         <hr />
-        <div>
-          <h2 className="budget-expenses-cards">Expenses</h2>
+        <div className="card-container">
+          <h2>Expenses</h2>
           {expenseCards.map((card) => (
             <BvExpensesCard key={card.firebaseKey} card={card} />
           ))}
@@ -73,8 +89,8 @@ export default function BudgetView({ uid }) {
           </div>
         </div>
         <hr />
-        <div>
-          <h2 className="budget-assets-cards">Assets</h2>
+        <div className="card-container">
+          <h2>Assets</h2>
           {assetCards.map((card) => (
             <BvAssetsCard key={card.firebaseKey} card={card} />
           ))}
@@ -83,8 +99,8 @@ export default function BudgetView({ uid }) {
           </div>
         </div>
         <hr />
-        <div>
-          <h2 className="budget-goals-cards">Goals</h2>
+        <div className="card-container">
+          <h2>Goals</h2>
           {goalCards.map((card) => (
             <BvGoalsCard key={card.firebaseKey} card={card} />
           ))}

@@ -7,6 +7,7 @@ import {
 import GoalsCard from '../components/cards/GoalsCard';
 import GoalsForm from '../components/forms/GoalsForm';
 import { getGoals } from '../api/data/goalsData';
+import colors from '../helpers/colors';
 
 Chart.register(ArcElement, Title, Legend, Tooltip);
 
@@ -23,16 +24,13 @@ export default function GoalsView({ uid }) {
       setChartLabels(cLabels);
       const cValues1 = goalsArray.map((card) => card.goalTotal);
       const cValues2 = goalsArray.map((card) => card.currentValue);
-      const totalValue = cValues1 - cValues2;
-      console.warn('cV1', cValues1);
-      console.warn('cV12', cValues2);
-      console.warn('totalValue', totalValue);
+      const totalValue = cValues1.map((num, idx) => num - cValues2[idx]);
       setChartValues(totalValue);
-    }, []);
-  });
-  console.warn('chartValues', chartValues);
+    });
+  }, []);
+
   return (
-    <div className="goal-view-container">
+    <div className="view-container">
       <div style={{ width: '20rem' }}>
         <Doughnut
           data={{
@@ -40,11 +38,7 @@ export default function GoalsView({ uid }) {
             datasets: [
               {
                 data: chartValues,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                ],
+                backgroundColor: colors,
               },
             ],
           }}
@@ -52,7 +46,7 @@ export default function GoalsView({ uid }) {
       </div>
       <hr />
       <div>
-        <div className="goal-card-container">
+        <div className="card-container">
           {goalCards.map((card) => (
             <GoalsCard
               key={card.firebaseKey}

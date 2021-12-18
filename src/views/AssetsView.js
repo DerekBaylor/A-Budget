@@ -7,6 +7,8 @@ import {
 import { getAssets } from '../api/data/assetsData';
 import AssetsCard from '../components/cards/AssetsCard';
 import AssetsForm from '../components/forms/AssetsForm';
+import colors from '../helpers/colors';
+// import { bottom } from '@popperjs/core';
 
 Chart.register(ArcElement, Title, Legend, Tooltip);
 
@@ -27,7 +29,7 @@ export default function AssetsView({ uid }) {
   }, []);
 
   return (
-    <div className="asset-view-container">
+    <div className="view-container">
       <div style={{ width: '20rem' }}>
         <Doughnut
           data={{
@@ -35,11 +37,7 @@ export default function AssetsView({ uid }) {
             datasets: [
               {
                 data: chartValues,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                ],
+                backgroundColor: colors,
               },
             ],
           }}
@@ -47,7 +45,7 @@ export default function AssetsView({ uid }) {
       </div>
       <hr />
       <div>
-        <div className="asset-card-container">
+        <div className="card-container">
           {assetCards.map((card) => (
             <AssetsCard
               key={card.firebaseKey}

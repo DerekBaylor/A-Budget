@@ -54,18 +54,6 @@ export default function SideNav() {
               <Link
                 className="nav-link active"
                 aria-current="page"
-                to="/budget"
-                onClick={showSidebar}
-              >
-                <span className="nav-text">
-                  <RiIcons.RiFileListLine /> Budget
-                </span>
-              </Link>
-            </li>
-            <li className="nav-item nav-text">
-              <Link
-                className="nav-link active"
-                aria-current="page"
                 to="/income"
                 onClick={showSidebar}
               >
