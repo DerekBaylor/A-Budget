@@ -1,0 +1,58 @@
+{
+    "-MrDSAiuxfFfzH4LQ70Y": {
+        "firebaseKey": "-MrDSAiuxfFfzH4LQ70Y",
+        "showTip": true,
+        "name": "Subscription Expense",
+        "category": "Subscriptions",
+        "text": "Subscription services are a silent killer to financial freedom. Consider keeping these to a minimum."
+    },
+    "-MrDSTUbL6yIvuhGQGmp": {
+        "firebaseKey": "-MrDSTUbL6yIvuhGQGmp",
+        "showTip": true,
+        "name": "Housing Percent",
+        "category": "Housing",
+        "text": "Your rent/mortgage should not be more than 30% of your take home pay."
+    },
+    "-MrDSoNgNcfBZo16SwVr": {
+        "firebaseKey": "-MrDSoNgNcfBZo16SwVr",
+        "showTip": true,
+        "name": "Credit Card Debt Consolidation",
+        "category": "Credit Card",
+        "text": "Consolidating credit card debt can dramtically lower your interest rate and make your debt much easier to pay off."
+    },
+    "-MrDSuw0kZYX1nqbKhWi": {
+        "firebaseKey": "-MrDSuw0kZYX1nqbKhWi",
+        "showTip": true,
+        "name": "Car Percent",
+        "category": "Vehicle",
+        "text": "Your vehicle payment and maintence costs should be no more than 10% of your take home pay. Consider trading in your vehicle for an older model to lower your vehicle expense."
+    },
+    "-MrDT0dN_iJ-MBopPzbV": {
+        "firebaseKey": "-MrDT0dN_iJ-MBopPzbV",
+        "showTip": true,
+        "name": "Avg. Utility Bill",
+        "category": "Utilities",
+        "text": "You can sometimes lower your monthly utility bill by setting a payment plan with the uiltity company to where you pay the monthly average of the bill instead of the monthly usuage. This removes the months were your energy bills speak do to higher use of your air conditioner and heater."
+    },
+    "-MrDTAaZWaknG8ID8mMb": {
+        "firebaseKey": "-MrDTAaZWaknG8ID8mMb",
+        "showTip": true,
+        "name": "Food Expense",
+        "category": "Food",
+        "text": "You can lower your food expense by cooking at home and shopping around for groceries. Different stores will offer the same products at different prices. And don't be afraid to try store brands."
+    },
+    "-MrDTGrjM-ypNlYLfX1-": {
+        "firebaseKey": "-MrDTGrjM-ypNlYLfX1-",
+        "showTip": true,
+        "name": "Entertain Expense",
+        "category": "Entertainment",
+        "text": "You should always set aside money for entertainment so that you can stay in budget. Lots of cities will offer free community activies if you've already used your budget and are still looing for more things to do. Try searching for your community board on google."
+    },
+    "-MrDTOsJwy9aYkSzTr-n": {
+        "firebaseKey": "-MrDTOsJwy9aYkSzTr-n",
+        "showTip": true,
+        "name": "Medical Expense",
+        "category": "Medical",
+        "text": "Most hospitals will offer repayment options based on your ability to pay. Reach out to them to discuss your repayment options. You can also get help from medical billing advocates but they will charge your fee."
+    }
+}

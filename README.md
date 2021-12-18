@@ -1,7 +1,19 @@
 ## A-Budget
 
+## To-Dos
+- Deploy Site & Add Link
+- Add Screen Shot of Site
+- Link to Loom Video of Site Walkthrough
+
 ## User Stories
 This app is for users who are looking with help on their monthly finances. It's a lightweight app that will let the user track their income, assets, expense, and their financial goals.
+
+## Technologies Use
+- React JS
+- Chart JS
+- Firebase
+- Bootstrap
+- Netlify
 
 ## Features
 - A full monthly overview of their money flow.
@@ -27,7 +39,7 @@ This app is for users who are looking with help on their monthly finances. It's 
   - Overview of their goals. 
   - Add new goals.
   - Update exsiting goals. 
-  - Delete achieved goals.
+  - Complete/Delete achieved goals.
 
   ## Relevant Links
 - [Check out the deployed site](/)
@@ -37,3 +49,4 @@ This app is for users who are looking with help on their monthly finances. It's 
 
   ## Contributors
 - [Derek Baylor](https://github.com/DerekBaylor)
+- [Derek Baylor Home Page](https://derek-baylor.netlify.app/)

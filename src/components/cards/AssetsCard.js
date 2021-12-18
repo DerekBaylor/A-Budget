@@ -10,22 +10,17 @@ export default function AssetsCard({
   setChartLabels,
   setChartValues,
 }) {
-  const chartRefresh = () => {
-    getAssets(uid).then((assetArray) => {
-      setAssetCards(assetArray);
-      const cLabels = assetArray.map((crd) => crd.name);
-      setChartLabels(cLabels);
-      const cValues = assetArray.map((crd) => crd.value);
-      setChartValues(cValues);
-    });
-  };
-
   const handleDelete = (method) => {
     if (method === 'delete') {
       deleteAsset(card.firebaseKey).then(() => {
-        getAssets(uid).then(setAssetCards);
+        getAssets(uid).then((assetArray) => {
+          setAssetCards(assetArray);
+          const cLabels = assetArray.map((crd) => crd.name);
+          setChartLabels(cLabels);
+          const cValues = assetArray.map((crd) => crd.value);
+          setChartValues(cValues);
+        });
       });
-      chartRefresh();
     }
   };
 

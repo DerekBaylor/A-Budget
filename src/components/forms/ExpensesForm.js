@@ -118,6 +118,8 @@ export default function ExpensesForm({
               <option value="Medical">Medical</option>
               <option value="Subscriptions">Subscriptions</option>
               <option value="Living Expense">Living Expense</option>
+              <option value="Food">Food</option>
+              <option value="Entertainment">Entertainment</option>
               <option value="Other">Other</option>
             </select>
           </label>
