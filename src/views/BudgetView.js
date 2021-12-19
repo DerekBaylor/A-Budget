@@ -37,7 +37,7 @@ export default function BudgetView({ uid }) {
       setAssetCards(astArray);
     });
     getGoals(uid).then(setGoaleCards);
-  }, [incTotal]);
+  }, []);
 
   useEffect(() => {
     const [...incomeCount] = incomeCards.map((card) => card.income);
