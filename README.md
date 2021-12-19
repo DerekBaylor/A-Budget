@@ -6,11 +6,13 @@
 This app is for users who are looking with help on their monthly finances. It's a lightweight app that will let the user track their income, assets, expense, and their financial goals.
 
 ## Technologies Use
+- Netlify
 - React JS
 - Chart JS
 - Firebase
 - Bootstrap
-- Netlify
+- CSS
+- HTML5
 
 ## Features
 - A full monthly overview of their money flow.
