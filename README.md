@@ -1,9 +1,6 @@
-## A-Budget
+## A-Budget[![Netlify Status](https://api.netlify.com/api/v1/badges/be56c4a1-574b-4ba7-a3cf-d01fd50649ab/deploy-status)](https://https://app.netlify.com/sites/a-budget/settings/deploys)
 
-## To-Dos
-- Deploy Site & Add Link
-- Add Screen Shot of Site
-- Link to Loom Video of Site Walkthrough
+<img width="1000" alt="Application Home Screen" src="https://zfjepfckphrvbatmvyud.supabase.in/storage/v1/object/public/personal-bio-storage/a-budget-home.PNG">
 
 ## User Stories
 This app is for users who are looking with help on their monthly finances. It's a lightweight app that will let the user track their income, assets, expense, and their financial goals.
@@ -42,7 +39,7 @@ This app is for users who are looking with help on their monthly finances. It's 
   - Complete/Delete achieved goals.
 
   ## Relevant Links
-- [Check out the deployed site](/)
+- [Check out the deployed site](https://a-budget.netlify.app/)
 - [Wireframes](https://www.figma.com/file/QuVDxjl2zlpLwSkGqqAH9y/Untitled?node-id=0%3A1)
 - [ERD](https://dbdiagram.io/d/61a62ac98c901501c0d9769b)
 - [Project Board](https://github.com/DerekBaylor/A-Budget/projects/1)
