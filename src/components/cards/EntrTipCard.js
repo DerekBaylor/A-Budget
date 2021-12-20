@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-console.warn('delete me');
-
 export default function EntrTipCard({ card }) {
   return (
     <div className="card tip-cards page-type-cards">

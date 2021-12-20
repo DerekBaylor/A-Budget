@@ -6,8 +6,6 @@ import {
   updateExpense,
 } from '../../api/data/expensesData';
 
-console.warn('delete me');
-
 const initialState = {
   name: '',
   category: '',
