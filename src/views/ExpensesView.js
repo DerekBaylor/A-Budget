@@ -20,7 +20,7 @@ import EntrTipCard from '../components/cards/EntrTipCard';
 import colors from '../helpers/colors';
 
 Chart.register(ArcElement, Title, Legend, Tooltip);
-
+console.warn('delete me');
 export default function ExpensesView({ uid }) {
   const [expenseCards, setExpenseCards] = useState([]);
   const [editItem, setEditItem] = useState({});

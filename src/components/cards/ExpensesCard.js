@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { deleteExpense, getExpenses } from '../../api/data/expensesData';
 
+console.warn('delete me');
 export default function ExpensesCard({
   card,
   uid,
