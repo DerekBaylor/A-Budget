@@ -9,6 +9,14 @@ export default function ExpensesCard({
   setExpenseCards,
   setChartLabels,
   setChartValues,
+  setHousingTotal,
+  setUtilityTotal,
+  setVehicleTotal,
+  setCCTotal,
+  setMedTotal,
+  setSubTotal,
+  setFoodTotal,
+  setEntrTotal,
 }) {
   const handleDelete = (method) => {
     if (method === 'delete') {
@@ -19,6 +27,62 @@ export default function ExpensesCard({
           setChartLabels(cLabels);
           const cValues = expenseArray.map((crd) => crd.value);
           setChartValues(cValues);
+
+          const houseGroup = expenseArray.filter(
+            (crd) => crd.category === 'Housing',
+          );
+          const [...housingCount] = houseGroup.map((crd) => crd.value);
+          const totHousing = housingCount.reduce((a, b) => a + b, 0);
+          setHousingTotal(totHousing);
+
+          const utilityGroup = expenseArray.filter(
+            (crd) => crd.category === 'Utilities',
+          );
+          const [...utilityCount] = utilityGroup.map((crd) => crd.value);
+          const totUtility = utilityCount.reduce((a, b) => a + b, 0);
+          setUtilityTotal(totUtility);
+
+          const vehicleGroup = expenseArray.filter(
+            (crd) => crd.category === 'Vehicle',
+          );
+          const [...vehicleCount] = vehicleGroup.map((crd) => crd.value);
+          const totVehicle = vehicleCount.reduce((a, b) => a + b, 0);
+          setVehicleTotal(totVehicle);
+
+          const ccGroup = expenseArray.filter(
+            (crd) => crd.category === 'Credit Card',
+          );
+          const [...ccCount] = ccGroup.map((crd) => crd.value);
+          const totCC = ccCount.reduce((a, b) => a + b, 0);
+          setCCTotal(totCC);
+
+          const medGroup = expenseArray.filter(
+            (crd) => crd.category === 'Medical',
+          );
+          const [...medCount] = medGroup.map((crd) => crd.value);
+          const totMed = medCount.reduce((a, b) => a + b, 0);
+          setMedTotal(totMed);
+
+          const subGroup = expenseArray.filter(
+            (crd) => crd.category === 'Credit Card',
+          );
+          const [...subCount] = subGroup.map((crd) => crd.value);
+          const totSub = subCount.reduce((a, b) => a + b, 0);
+          setSubTotal(totSub);
+
+          const foodGroup = expenseArray.filter(
+            (crd) => crd.category === 'Food',
+          );
+          const [...foodCount] = foodGroup.map((crd) => crd.value);
+          const totFood = foodCount.reduce((a, b) => a + b, 0);
+          setFoodTotal(totFood);
+
+          const entrGroup = expenseArray.filter(
+            (crd) => crd.category === 'Entertainment',
+          );
+          const [...entrCount] = entrGroup.map((crd) => crd.value);
+          const totEntr = entrCount.reduce((a, b) => a + b, 0);
+          setEntrTotal(totEntr);
         });
       });
     }
@@ -70,4 +134,12 @@ ExpensesCard.propTypes = {
   setExpenseCards: PropTypes.func.isRequired,
   setChartValues: PropTypes.func.isRequired,
   setChartLabels: PropTypes.func.isRequired,
+  setHousingTotal: PropTypes.func.isRequired,
+  setUtilityTotal: PropTypes.func.isRequired,
+  setVehicleTotal: PropTypes.func.isRequired,
+  setCCTotal: PropTypes.func.isRequired,
+  setMedTotal: PropTypes.func.isRequired,
+  setSubTotal: PropTypes.func.isRequired,
+  setFoodTotal: PropTypes.func.isRequired,
+  setEntrTotal: PropTypes.func.isRequired,
 };

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { deleteGoal, getGoals } from '../../api/data/goalsData';
 
+console.warn('delete me');
+
 export default function GoalsCard({
   card,
   uid,

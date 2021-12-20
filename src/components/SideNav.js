@@ -14,7 +14,7 @@ export default function SideNav() {
   return (
     <div className="side-nav">
       <IconContext.Provider value={{ color: '#fff' }}>
-        <div className="navBar">
+        <div className="navBar navbar-header">
           <button
             type="button"
             className="menu-bars nav-btn"
@@ -24,6 +24,9 @@ export default function SideNav() {
               <FaIcons.FaBars />
             </span>
           </button>
+          <div className="navbar-title-container">
+            <h1 className="navbar-title">A Budget</h1>
+          </div>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className="nav-menu-items">

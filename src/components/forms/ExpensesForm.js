@@ -22,6 +22,14 @@ export default function ExpensesForm({
   setExpenseCards,
   setChartLabels,
   setChartValues,
+  setHousingTotal,
+  setUtilityTotal,
+  setVehicleTotal,
+  setCCTotal,
+  setMedTotal,
+  setSubTotal,
+  setFoodTotal,
+  setEntrTotal,
 }) {
   const [formInput, setFormInput] = useState(initialState);
 
@@ -63,6 +71,62 @@ export default function ExpensesForm({
           setChartLabels(cLabels);
           const cValues = expenseArray.map((card) => card.value);
           setChartValues(cValues);
+
+          const houseGroup = expenseArray.filter(
+            (card) => card.category === 'Housing',
+          );
+          const [...housingCount] = houseGroup.map((card) => card.value);
+          const totHousing = housingCount.reduce((a, b) => a + b, 0);
+          setHousingTotal(totHousing);
+
+          const utilityGroup = expenseArray.filter(
+            (card) => card.category === 'Utilities',
+          );
+          const [...utilityCount] = utilityGroup.map((card) => card.value);
+          const totUtility = utilityCount.reduce((a, b) => a + b, 0);
+          setUtilityTotal(totUtility);
+
+          const vehicleGroup = expenseArray.filter(
+            (card) => card.category === 'Vehicle',
+          );
+          const [...vehicleCount] = vehicleGroup.map((card) => card.value);
+          const totVehicle = vehicleCount.reduce((a, b) => a + b, 0);
+          setVehicleTotal(totVehicle);
+
+          const ccGroup = expenseArray.filter(
+            (card) => card.category === 'Credit Card',
+          );
+          const [...ccCount] = ccGroup.map((card) => card.value);
+          const totCC = ccCount.reduce((a, b) => a + b, 0);
+          setCCTotal(totCC);
+
+          const medGroup = expenseArray.filter(
+            (card) => card.category === 'Medical',
+          );
+          const [...medCount] = medGroup.map((card) => card.value);
+          const totMed = medCount.reduce((a, b) => a + b, 0);
+          setMedTotal(totMed);
+
+          const subGroup = expenseArray.filter(
+            (card) => card.category === 'Subscriptions',
+          );
+          const [...subCount] = subGroup.map((card) => card.value);
+          const totSub = subCount.reduce((a, b) => a + b, 0);
+          setSubTotal(totSub);
+
+          const foodGroup = expenseArray.filter(
+            (card) => card.category === 'Food',
+          );
+          const [...foodCount] = foodGroup.map((card) => card.value);
+          const totFood = foodCount.reduce((a, b) => a + b, 0);
+          setFoodTotal(totFood);
+
+          const entrGroup = expenseArray.filter(
+            (card) => card.category === 'Entertainment',
+          );
+          const [...entrCount] = entrGroup.map((card) => card.value);
+          const totEntr = entrCount.reduce((a, b) => a + b, 0);
+          setEntrTotal(totEntr);
         });
         resetForm();
       });
@@ -74,6 +138,62 @@ export default function ExpensesForm({
           setChartLabels(cLabels);
           const cValues = expenseArray.map((card) => card.value);
           setChartValues(cValues);
+
+          const houseGroup = expenseArray.filter(
+            (card) => card.category === 'Housing',
+          );
+          const [...housingCount] = houseGroup.map((card) => card.value);
+          const totHousing = housingCount.reduce((a, b) => a + b, 0);
+          setHousingTotal(totHousing);
+
+          const utilityGroup = expenseArray.filter(
+            (card) => card.category === 'Utilities',
+          );
+          const [...utilityCount] = utilityGroup.map((card) => card.value);
+          const totUtility = utilityCount.reduce((a, b) => a + b, 0);
+          setUtilityTotal(totUtility);
+
+          const vehicleGroup = expenseArray.filter(
+            (card) => card.category === 'Vehicle',
+          );
+          const [...vehicleCount] = vehicleGroup.map((card) => card.value);
+          const totVehicle = vehicleCount.reduce((a, b) => a + b, 0);
+          setVehicleTotal(totVehicle);
+
+          const ccGroup = expenseArray.filter(
+            (card) => card.category === 'Credit Card',
+          );
+          const [...ccCount] = ccGroup.map((card) => card.value);
+          const totCC = ccCount.reduce((a, b) => a + b, 0);
+          setCCTotal(totCC);
+
+          const medGroup = expenseArray.filter(
+            (card) => card.category === 'Credit Card',
+          );
+          const [...medCount] = medGroup.map((card) => card.value);
+          const totMed = medCount.reduce((a, b) => a + b, 0);
+          setMedTotal(totMed);
+
+          const subGroup = expenseArray.filter(
+            (card) => card.category === 'Credit Card',
+          );
+          const [...subCount] = subGroup.map((card) => card.value);
+          const totSub = subCount.reduce((a, b) => a + b, 0);
+          setSubTotal(totSub);
+
+          const foodGroup = expenseArray.filter(
+            (card) => card.category === 'Food',
+          );
+          const [...foodCount] = foodGroup.map((card) => card.value);
+          const totFood = foodCount.reduce((a, b) => a + b, 0);
+          setFoodTotal(totFood);
+
+          const entrGroup = expenseArray.filter(
+            (card) => card.category === 'Entertainment',
+          );
+          const [...entrCount] = entrGroup.map((card) => card.value);
+          const totEntr = entrCount.reduce((a, b) => a + b, 0);
+          setEntrTotal(totEntr);
         });
         resetForm();
       });
@@ -191,6 +311,14 @@ ExpensesForm.propTypes = {
   setExpenseCards: PropTypes.func.isRequired,
   setChartValues: PropTypes.func.isRequired,
   setChartLabels: PropTypes.func.isRequired,
+  setHousingTotal: PropTypes.func.isRequired,
+  setUtilityTotal: PropTypes.func.isRequired,
+  setVehicleTotal: PropTypes.func.isRequired,
+  setCCTotal: PropTypes.func.isRequired,
+  setMedTotal: PropTypes.func.isRequired,
+  setSubTotal: PropTypes.func.isRequired,
+  setFoodTotal: PropTypes.func.isRequired,
+  setEntrTotal: PropTypes.func.isRequired,
 };
 
 ExpensesForm.defaultProps = {
