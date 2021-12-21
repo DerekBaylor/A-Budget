@@ -92,16 +92,31 @@ body {
 } 
 
 .view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  margin-bottom: 10rem;
+  .tip-card-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem;
-    margin-bottom: 10rem;
+    flex-direction: row;
+    max-width: 80rem;
+    .tip-cards {
+      max-width: 30rem;
+      margin: .1rem;
+      .card-text {
+        color: #060b26;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+      }
+    }
     .form-container {
       .Form-group {
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
         justify-content: center;
       }
       .form-text {
