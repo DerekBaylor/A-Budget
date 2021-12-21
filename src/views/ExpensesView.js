@@ -269,8 +269,7 @@ export default function ExpensesView({ uid }) {
         />
       </div>
       <hr />
-      <div>
-        <h1>Tips</h1>
+      <div className="tip-card-container">
         <div>
           {housingTips.map((card) => (
             <HousingTipCard key={1} card={card} />
